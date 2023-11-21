@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/649ff54fcc.js" crossorigin="anonymous"></script>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="text-center">
+
+    <div id="flash" class="flash">
+      <%= render "shared/flash" %>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+.footer {
+  background: (var(--color-light));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: (var(--color-text-muted));
+  margin-top: 150px;
+
+  .fa-heart {
+    color: var(--color-primary-rotate);
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    
+    a {
+      color: black;
+      opacity: 0.15;
+      text-decoration: none;
+      font-size: 24px;
+      padding: 0px 10px;
+    
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__copyright {
+
+    a {
+      color: black;
+      opacity: 0.15;
+      text-decoration: none;
+    
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
+}

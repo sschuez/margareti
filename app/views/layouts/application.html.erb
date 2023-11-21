@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Margareti</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="https://kit.fontawesome.com/649ff54fcc.js" crossorigin="anonymous"></script>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>  
+    <%= render 'shared/navbar' %>
+
+    <div id="flash" class="flash">
+      <%= render "shared/flash" %>
+    </div>
+
+    <%= yield %>
+  
+<%= render 'shared/footer' %>
+
+  </body>
+</html>
