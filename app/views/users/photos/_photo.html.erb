@@ -1,0 +1,18 @@
+<%= turbo_frame_tag dom_id(current_user, "edit_photo") do %>  
+  
+  <div class="profile__photo">
+
+    <% if current_user.photo.attached? %>
+      
+      <%= image_tag current_user.photo.variant(resize_to_limit: [500, 500]), class: "profile__photo--img avatar-large" %>
+      
+      <%= link_to edit_user_photo_path(current_user), class: "profile__photo__edit" do %>
+        <%= Icon.call("edit_emoji") %>
+      <% end %>
+
+      <% else %>
+        <%= link_to "Add photo", edit_user_photo_path(current_user) %>
+    <% end %>
+  </div>
+
+<% end %>

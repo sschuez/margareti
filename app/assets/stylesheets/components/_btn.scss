@@ -70,4 +70,33 @@
       color: var(--color-white);
     }
   }
+  
+  &--emoji {
+    padding: 2px !important;
+    height: 2.75em;
+  }
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+  transition: color 200ms !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--color-primary-rotate) !important;
+  }
+
+  &--nav {
+    border-bottom: 0.3rem transparent solid;
+    
+    &:hover {
+      border-bottom: 0.3rem var(--lime-green) solid;
+      cursor: pointer;
+    }
+  }
 }

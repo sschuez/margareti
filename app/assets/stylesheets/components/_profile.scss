@@ -1,0 +1,50 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 3em;
+
+  &__name {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
+    
+    &__edit {
+      position: absolute;
+      top: -1.5em;
+      right: -2.5em;
+    }
+    
+  }
+  
+  &__bio {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1em 0;
+    
+    &__edit {
+      position: absolute;
+      top: 0;
+      right: 1em;
+    }
+  }
+  
+  &__photo {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 3em;
+    
+    &--img {
+      margin: 0 auto;
+    }
+    
+    &__edit {
+      position: absolute;
+      top: -1.5em;
+      right: -2.5em;
+    }
+  }
+  
+}

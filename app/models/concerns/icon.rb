@@ -1,4 +1,8 @@
 class Icon
+  def self.call(*args, &block)
+    new(*args, &block).call
+  end
+  
   def initialize(icon)
     @icon = icon
     @icons = {
@@ -13,7 +17,11 @@ class Icon
       close_lg: '<i class="bi bi-x-lg"></i>',
       sign_out: '<i class="bi bi-box-arrow-right"></i>',
       sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
-      translate: '<i class="bi bi-translate"></i>'
+      translate: '<i class="bi bi-translate"></i>',
+      info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
+      edit_emoji: '<i class="emoji">✍️</i>',
+      confirm_emoji: '<i class="emoji">👍</i>',
+      cancel_emoji: '<i class="emoji">❌</i>'
     }
   end
 

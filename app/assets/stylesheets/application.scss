@@ -7,13 +7,16 @@
 @use "config/animations";
 
 // Components
+@use "components/avatar";
 @use "components/btn";
 @use "components/empty_state";
 @use "components/error_message";
 @use "components/flash";
 @use "components/footer";
 @use "components/form";
+@use "components/icon";
 @use "components/navbar";
+@use "components/profile";
 @use "components/turbo_progress_bar";
 @use "components/visually_hidden";
 

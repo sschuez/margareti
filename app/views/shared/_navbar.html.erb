@@ -1,7 +1,7 @@
 <header class="navbar">
-  <div class="navbar__brand">
-    LOGO
-  </div>
+  
+  <%= link_to "LOGO", root_path, class: "navbar__brand" %>
+  
   <% if user_signed_in? %>
     <div class="navbar__name">
       <%= current_user.email %>

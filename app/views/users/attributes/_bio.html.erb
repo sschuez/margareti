@@ -1,0 +1,18 @@
+<%= turbo_frame_tag dom_id(current_user, "edit_bio") do %>  
+  <div class="profile__bio">
+  
+    <% if current_user.bio %>
+      <div class="card profile__bio">
+        <div class="card-body">
+          <p class="card-text"><%= simple_format current_user.bio %></p>
+          <%= link_to edit_user_attributes_path(current_user, attribute: "bio"), class: "profile__bio__edit" do %>
+            <%= Icon.call("edit_emoji") %>
+          <% end %>
+        </div>
+      </div>
+      <% else %>
+        <%= link_to "Add bio", edit_user_attributes_path(current_user, attribute: "bio") %>
+    <% end %>
+      
+  </div>
+<% end %>

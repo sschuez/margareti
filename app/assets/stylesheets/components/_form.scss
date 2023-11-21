@@ -25,4 +25,57 @@
       border-color: var(--color-primary);
     }
   }
+
+  
+  &__container {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 2em;
+
+    &--bio {
+      flex-direction: column;
+    }
+    
+    &--photo {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+
+      &--bio {
+        align-self: flex-end;
+      }
+    }
+
+    &__input {
+      
+      &--full_name {
+        line-height: 2em;
+      }
+
+      &--bio {
+        
+      }
+
+      &--photo {
+        // width: 200px !important;
+        line-height: 2em;
+        vertical-align: middle !important;
+      }
+    }
+  }
+}
+
+.upload-photo {
+  padding: 10px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-dark) !important;
+  background-color: var(--color-light) !important;
+  border-radius: 5px;
 }

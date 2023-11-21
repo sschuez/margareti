@@ -1,0 +1,38 @@
+<%= turbo_frame_tag dom_id(current_user, "edit_photo") do %>
+
+  <%= simple_form_for current_user, url: user_photo_path(current_user) do |f| %>
+
+    <%= form_error_notification(current_user) %>
+
+    <div class="form__container form__container--photo" data-controller='instant-upload'>
+  
+      <%= image_tag current_user.photo.variant(resize_to_limit: [500, 500]),
+            width: 300, height: 300,
+            class: "avatar-large",
+            'data-instant-upload-target': 'image',
+            'data-action': 'instant-uploaded->cropper#changed' if current_user.photo.attached? %>
+
+      <%= content_tag :img, nil, src: nil, width: 300, height: 300,
+            class: "avatar-large",
+            'data-instant-upload-target': 'image',
+            'data-action': 'instant-uploaded->cropper#changed' unless current_user.photo.attached? %>
+        
+      <div class="form__container__actions form__container__actions--photo">
+        <%= f.input :photo,
+            input_html: { class: 'd-none',
+                          data: { "instant-upload-target": "input", action: "instant-upload#changed" } }, 
+            label_html: { class: 'upload-photo'}, 
+            label: '📷 Upload a photo' %>
+        <%= link_to user_path(current_user), class: "btn btn--light btn--emoji" do %>
+          <%= Icon.call("cancel_emoji") %>
+        <% end %>
+        <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+          <%= Icon.new("confirm_emoji").call %>
+        <% end %>
+      </div>
+      
+    </div>
+  <% end %>
+
+
+<% end %>

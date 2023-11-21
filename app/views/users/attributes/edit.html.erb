@@ -1,0 +1,29 @@
+<div class="text-center">
+  <h1>Edit <%= @attribute %></h1>
+
+  <%= turbo_frame_tag dom_id(current_user, "edit_#{@attribute}") do %>
+    <%= simple_form_for current_user, url: user_attributes_path(current_user, attribute: @attribute), method: :patch do |f| %>
+      <%= form_error_notification(current_user) %>
+
+      <div class="form__container <%= "form__container--bio" if @attribute == "bio" %>"> 
+        <%= f.input @attribute.to_sym,
+              required: false,
+              label: false,
+              autofocus: true,
+              input_html: { autocomplete: @attribute, 
+                            data: { controller: "textarea-autogrow" } },
+              wrapper_html: { class: "form__container__input--#{@attribute}" } %>
+        
+        <div class="form__container__actions <%= "form__container__actions--bio" if @attribute == "bio" %>">
+          <%= link_to user_path(current_user), class: "btn btn--light btn--emoji" do %>
+            <%= Icon.call("cancel_emoji") %>
+          <% end %>
+          <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+            <%= Icon.new("confirm_emoji").call %>
+          <% end %>
+        </div>
+      </div>  
+      
+    <% end %>
+  <% end %>
+</div>
