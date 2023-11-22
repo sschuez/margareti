@@ -11,10 +11,15 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
+    placeholders:
+      user:
+        full_name: Your full name
+        bio: Tell about yourself
+        email: Your email address
+        password: Your password
     labels:
       user:
-        users:
-          full_name: 'Full name'
+        full_name: 'Full name'
     #   defaults:
     #     password: 'Password'
     #   user:

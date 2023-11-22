@@ -7,8 +7,6 @@
 
       <div class="form__container"> 
         <%= f.input @attribute.to_sym,
-              required: false,
-              label: false,
               autofocus: true,
               input_html: { autocomplete: @attribute, 
                             data: { controller: "textarea-autogrow" } },
