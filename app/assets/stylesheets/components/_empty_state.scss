@@ -1,8 +1,10 @@
 .empty-state {
   padding: var(--space-m);
   border: var(--border);
+  margin: 0 1rem;
   border-style: dashed;
   text-align: center;
+  z-index: 9;
 
   &__text {
     font-size: var(--font-size-l);

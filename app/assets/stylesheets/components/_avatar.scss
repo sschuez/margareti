@@ -1,11 +1,15 @@
 .avatar-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  background-color: #ff8966;
+  background-color: var(--color-avatar);
 }
 
 .dark-mode .avatar-large {
-  background-color: #ff8966;
+  background-color: var(--color-avatar);
 }

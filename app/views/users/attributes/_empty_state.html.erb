@@ -1,0 +1,8 @@
+<div class="empty-state empty-state--only-child">
+  <p class="empty-state__text">
+    There's no <%= attribute %> yet.
+  </p>
+
+  <%= link_to "Add #{attribute}", 
+      edit_user_attributes_path(current_user, attribute: attribute) %>
+</div>

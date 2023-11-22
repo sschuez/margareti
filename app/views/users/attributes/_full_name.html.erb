@@ -1,8 +1,17 @@
-<%= turbo_frame_tag dom_id(current_user, "edit_full_name") do %>
+<%= turbo_frame_tag dom_id(user, "edit_full_name") do %>
+
   <div class="profile__name">
-    <h1><%= current_user.full_name %></h1>
-    <%= link_to edit_user_attributes_path(current_user, attribute: "full_name"), class: "profile__name__edit" do %>
-      <%= Icon.call("edit_emoji") %>
+    <% if user.full_name %>
+
+      <h1><%= user.full_name %></h1>
+      <%= link_to edit_user_attributes_path(user, attribute: "full_name"), class: "profile__name__edit" do %>
+        <%= Icon.call("edit_emoji") %>
+      <% end %>
+    
+    <% else %>
+
+      <%= render "users/attributes/empty_state", attribute: "full_name" %>
+
     <% end %>
   </div>
 <% end %>
