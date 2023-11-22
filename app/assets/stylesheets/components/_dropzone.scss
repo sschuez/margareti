@@ -1,0 +1,14 @@
+.dropzone {
+  border: var(--border) !important;
+  border-style: dashed !important;
+  border-radius: var(--space-xxxs) !important;
+  margin-top: 6px !important;
+  
+  .dz-image-preview {
+    z-index: 1 !important;
+  }
+
+  &--recipe {
+    padding: 1rem !important;
+  }
+}

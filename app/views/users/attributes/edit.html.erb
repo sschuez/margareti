@@ -5,7 +5,7 @@
     <%= simple_form_for current_user, url: user_attributes_path(current_user, attribute: @attribute), method: :patch do |f| %>
       <%= form_error_notification(current_user) %>
 
-      <div class="form__container <%= "form__container--bio" if @attribute == "bio" %>"> 
+      <div class="form__container"> 
         <%= f.input @attribute.to_sym,
               required: false,
               label: false,
@@ -14,7 +14,7 @@
                             data: { controller: "textarea-autogrow" } },
               wrapper_html: { class: "form__container__input--#{@attribute}" } %>
         
-        <div class="form__container__actions <%= "form__container__actions--bio" if @attribute == "bio" %>">
+        <div class="form__container__actions">
           <%= link_to user_path(current_user), class: "btn btn--light btn--emoji" do %>
             <%= Icon.call("cancel_emoji") %>
           <% end %>

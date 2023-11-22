@@ -46,10 +46,7 @@
       display: flex;
       gap: 6px;
       margin-top: auto;
-
-      &--bio {
-        align-self: flex-end;
-      }
+      align-items: flex-end;
     }
 
     &__input {

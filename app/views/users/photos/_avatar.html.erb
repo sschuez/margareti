@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(user, "avatar") do %>
+  <div class="profile__photo">
+    <%= photo_for(user) %>
+  </div>
+<% end %>
