@@ -1,21 +1,23 @@
 class Users::AttributesController < ApplicationController
   def edit
     @attribute = params[:attribute]
+    @user = User.find(params[:user_id])
   end
 
   def update
     @attribute = params[:attribute]
+    @user = User.find(params[:user_id])
     
     case @attribute
     when "full_name"
-      current_user.full_name = user_params[:full_name]
+      @user.full_name = user_params[:full_name]
     when "bio"
-      current_user.bio = user_params[:bio]
+      @user.bio = user_params[:bio]
     end
     
-    if current_user.save
+    if @user.save
       respond_to do |format|
-        format.html { redirect_to user_path(current_user), notice: "Your profile has been updated." }
+        format.html { redirect_to user_path(@user), notice: "Your profile has been updated." }
         format.turbo_stream { flash.now[:notice] = "Your profile has been updated." }
       end
     else

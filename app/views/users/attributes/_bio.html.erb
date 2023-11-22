@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(user, "edit_bio") do %>  
   <div class="profile__bio">
     
-    <% if user.bio %>
+    <% if user.bio.present? %>
       <div class="profile__bio">
         <p><%= simple_format user.bio %></p>
         <%= link_to edit_user_attributes_path(user, attribute: "bio"), class: "profile__bio__edit" do %>
@@ -10,7 +10,7 @@
       </div>
       <% else %>
 
-        <%= render "users/attributes/empty_state", attribute: "bio" %>
+        <%= render "users/attributes/empty_state", user: user, attribute: "bio" %>
     <% end %>
       
   </div>

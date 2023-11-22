@@ -11,7 +11,10 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
-    # labels:
+    labels:
+      user:
+        users:
+          full_name: 'Full name'
     #   defaults:
     #     password: 'Password'
     #   user:
