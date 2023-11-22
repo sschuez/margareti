@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def dynamic_user_root_path
+    user_signed_in? ? user_path(current_user) : root_path
+  end
+
   def render_turbo_stream_flash_messages
     turbo_stream.prepend "flash", partial: "shared/flash"
   end

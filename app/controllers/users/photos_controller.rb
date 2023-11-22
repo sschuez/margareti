@@ -3,9 +3,13 @@ class Users::PhotosController < ApplicationController
   end
 
   def update
-    current_user.photo.attach(user_params[:photo])
-    flash[:notice] = "Photo updated"
-    redirect_to user_path(current_user)
+    @user = User.find(params[:user_id])
+    @user.photo.attach(user_params[:photo])
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Photo updated" }
+      format.html { redirect_to user_path(@user), notice: "Photo updated" }
+    end
   end
 
   private

@@ -1,28 +1,30 @@
-<%= turbo_frame_tag dom_id(current_user, "edit_photo") do %>
+<%= turbo_frame_tag "photo-form" do %>
 
   <%= simple_form_for current_user, url: user_photo_path(current_user) do |f| %>
 
     <%= form_error_notification(current_user) %>
 
     <div class="form__container form__container--photo" data-controller='instant-upload'>
-  
-      <%= image_tag current_user.photo.variant(resize_to_limit: [500, 500]),
-            width: 300, height: 300,
-            class: "avatar-large",
-            'data-instant-upload-target': 'image',
-            'data-action': 'instant-uploaded->cropper#changed' if current_user.photo.attached? %>
-
-      <%= content_tag :img, nil, src: nil, width: 300, height: 300,
-            class: "avatar-large",
-            'data-instant-upload-target': 'image',
-            'data-action': 'instant-uploaded->cropper#changed' unless current_user.photo.attached? %>
         
       <div class="form__container__actions form__container__actions--photo">
-        <%= f.input :photo,
-            input_html: { class: 'd-none',
-                          data: { "instant-upload-target": "input", action: "instant-upload#changed" } }, 
-            label_html: { class: 'upload-photo'}, 
-            label: '📷 Upload a photo' %>
+        
+        <%= dropzone_controller_div(1) do %>
+          <% if current_user.photo.attached? %>
+            <% file_details = file_details_for(current_user.photo) %>
+            <%= f.hidden_field :photo, multiple: false, value: current_user.photo, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], blob_id: file_details[:blob_id], "dropzone-target": "existingFile" } %>
+          <% end %>
+          <%= f.file_field :photo, direct_upload: true, multiple: false, 'data-dropzone-target': 'input' %>
+          <div data-dropzone-target="dropzoneMsg" class="dropzone-msg dz-message needsclick">
+            <h5 class="dropzone-msg-title">
+              Drag to upload or click to browse
+            </h5> 
+            <span class="dropzone-msg-desc text-sm small">
+              10 MB max size. 
+              <%# Allowed file types png, jpg. %>
+            </span>
+          </div>
+        <% end %>
+
         <%= link_to user_path(current_user), class: "btn btn--light btn--emoji" do %>
           <%= Icon.call("cancel_emoji") %>
         <% end %>

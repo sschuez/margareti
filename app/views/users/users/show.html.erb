@@ -1,5 +1,7 @@
+<%= turbo_stream_from @user %>
+
 <div class="profile">
-  <%= render "users/photos/photo" %>
-  <%= render "users/attributes/full_name" %>
-  <%= render "users/attributes/bio" %>
+  <%= render "users/photos/photo", user: @user %>
+  <%= render "users/attributes/full_name", user: @user %>
+  <%= render "users/attributes/bio", user: @user %>
 </div>
