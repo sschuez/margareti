@@ -1,0 +1,72 @@
+.blocks {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0;
+  margin-top: 2rem;
+  // align-items: center // Changes cards to their size even if grid is larger
+
+  &__item {
+    text-align: left;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+
+    &--title {
+      display: flex;
+    }
+  }
+}
+
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -16px;
+}
+
+/* RESPONSIVE */
+
+/* Smallest device */
+@media (min-width: 100px) and (max-width: 575px) {
+  .grid-item {
+    // padding: 12px 12px 64px 12px;
+    padding-left: 20px;
+  }
+  
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .grid-item {
+    // padding: 12px 24px 64px 24px; 
+    padding-left: 12px;
+  }
+  
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .grid-item {
+    // padding: 12px 36px 64px 36px; 
+    padding-left: 42px;
+  }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .grid-item {
+    // padding: 24px 70px 64px 70px; 
+  }
+  
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .grid-item {
+    // padding: 24px 100px 64px 100px; 
+  }
+  
+}
+

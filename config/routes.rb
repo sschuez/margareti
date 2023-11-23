@@ -14,8 +14,14 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index] do
       resource :attributes, only: [:edit, :update]
       resource :photo, only: [ :edit, :update ]
+      
+      # BLOCKS
+      resources :blocks, only: [:new, :create]
     end
   end
+
+  # BLOCKS
+  resources :blocks, only: [:destroy]
 
   # FILE UPLOADS
   resources :file_uploads, only: [:destroy]

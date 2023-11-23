@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :blocks, dependent: :destroy
   has_one_attached  :photo
 
   def broadcast_photo_destroyed
