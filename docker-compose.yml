@@ -1,0 +1,40 @@
+version: "3.8"
+include:
+  - .docker/postgres.yml
+  - .docker/redis.yml
+
+x-base: &base
+  build:
+    context: .
+    dockerfile: .docker/Dockerfile.dev
+  stdin_open: true
+  tty: true
+
+services:
+  app:
+    <<: *base
+    command: bin/dev
+    restart: on-failure
+    volumes:
+      - .:/app:cached
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres/margareti_development
+      REDIS_URL: redis://redis:6379
+      RUBY_YJIT_ENABLE: 1
+
+  worker:
+    <<: *base
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    # restart: on-failure
+    # volumes:
+      # - .:/app
+    depends_on:
+      - postgres
+      - redis
+    environment:
+    - REDIS_URL=redis://redis:6379

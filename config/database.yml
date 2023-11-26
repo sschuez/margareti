@@ -22,6 +22,11 @@ default: &default
 development:
   <<: *default
   database: margareti_development
+  url: <%= ENV.fetch('DATABASE_URL') { "postgres://postgres:postgres@localhost/margareti_development" } %>
+
+# development:
+#   <<: *default
+#   database: margareti_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
