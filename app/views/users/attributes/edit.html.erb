@@ -2,7 +2,9 @@
   <h1>Edit <%= @attribute %></h1>
 
   <%= turbo_frame_tag dom_id(@user, "edit_#{@attribute}") do %>
-    <%= simple_form_for @user, url: user_attributes_path(@user, attribute: @attribute), method: :patch do |f| %>
+    
+    <% wrapper_class = "profile__#{@attribute} profile__#{@attribute}--form" %>
+    <%= simple_form_for @user, url: user_attributes_path(@user, attribute: @attribute), html: { class: wrapper_class },  method: :patch do |f| %>
       <%= form_error_notification(@user) %>
 
       <div class="form__container"> 
@@ -23,5 +25,6 @@
       </div>  
       
     <% end %>
+
   <% end %>
 </div>

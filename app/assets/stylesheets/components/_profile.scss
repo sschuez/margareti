@@ -4,27 +4,35 @@
   text-align: center;
   margin: 0 auto;
   margin-top: 3em;
+  max-width: 600px;
 
   &__name {
     position: relative;
     display: inline-block;
     margin-bottom: 1em;
+
+    &--form {
+
+    }
     
     &__edit {
       position: absolute;
       top: -1.5em;
       right: -2.5em;
     }
-    
   }
   
   &__bio {
     position: relative;
-    max-width: 600px;
     margin: 0 auto;
     padding: 1em 0;
     background-color: var(--color-less-light);
     border-radius: var(--border-radius);
+    
+
+    &--form {
+      padding: 0.5rem !important;
+    }
     
     &__edit {
       position: absolute;
