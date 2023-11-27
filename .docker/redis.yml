@@ -1,4 +1,3 @@
-# .docker/redis.yml
 services:
   redis:
     image: redis:latest
