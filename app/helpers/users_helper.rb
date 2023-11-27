@@ -3,7 +3,7 @@ module UsersHelper
     if user.photo.attached?
       image_tag user.photo.variant(resize_to_limit: [500, 500]), class: "profile__photo--img avatar-large"
     else
-      content_tag(:div, "No photo added", class: "profile__photo--img avatar-large")
+      content_tag(:div, "No photo added", class: "profile__photo--img avatar-large avatar-large--empty-state")
     end
   end
 

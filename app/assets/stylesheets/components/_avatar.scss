@@ -8,6 +8,11 @@
   object-fit: cover;
   border-radius: 50%;
   background-color: var(--color-avatar);
+  border: var(--border);
+
+  &--empty-state {
+    border-style: dashed !important;
+  }
 }
 
 .dark-mode .avatar-large {
