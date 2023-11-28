@@ -3,6 +3,6 @@
     There's no <%= attribute %> yet.
   </p>
 
-  <%= link_to "Add #{attribute}", 
+  <%= link_to "Add #{remove_underscore(attribute)}", 
       edit_user_attributes_path(user, attribute: attribute) %>
 </div>
