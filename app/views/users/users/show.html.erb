@@ -4,9 +4,9 @@
   <%= render "users/attributes/bio", user: @user %>
 </div>
 
-<div class="blocks">
-  <%= render "users/blocks/empty_state", user: @user %>
+<div id="blocks" class="blocks">
+  <%= render "blocks/blocks/empty_state", user: @user %>
   <% @user.blocks.each do |block| %>
-    <%= render block %>
+    <%= render "blocks/blocks/block", block: block %>
   <% end %>
 </div>

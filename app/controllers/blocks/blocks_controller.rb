@@ -1,6 +1,12 @@
-class Users::BlocksController < ApplicationController
+class Blocks::BlocksController < ApplicationController
   def new
+    @user = User.find(params[:user_id])
     @block = Block.new
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create

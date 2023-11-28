@@ -1,0 +1,6 @@
+<%= simple_form_for [@block, @item] do |f| %>
+  <%= form_error_notification(@item) %>
+  <%= f.input :name %>
+  <%= f.input :content %>
+  <%= f.submit %>
+<% end %>

@@ -14,14 +14,18 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index] do
       resource :attributes, only: [:edit, :update]
       resource :photo, only: [ :edit, :update ]
-      
-      # BLOCKS
-      resources :blocks, only: [:new, :create]
     end
   end
 
   # BLOCKS
-  resources :blocks, only: [:destroy]
+  scope module: :blocks do
+    # Custom route for 'new' that includes the user ID, but does not namespace under users
+    get 'users/:user_id/blocks/new', to: 'blocks#new', as: :new_user_block
+    # Standard non-nested routes for blocks
+    resources :blocks, only: [:create, :destroy] do
+      resources :items, only: [:new, :create, :show, :destroy]
+    end
+  end
 
   # FILE UPLOADS
   resources :file_uploads, only: [:destroy]

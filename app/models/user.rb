@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :blocks, dependent: :destroy
+  has_many :items, through: :blocks
   has_one_attached  :photo
 
   def broadcast_photo_destroyed
