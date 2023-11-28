@@ -10,7 +10,10 @@ class Blocks::ItemsController < ApplicationController
     @item.block = @block
 
     if @item.save
-      redirect_to user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,6 +32,6 @@ class Blocks::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :content)
   end
 end

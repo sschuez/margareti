@@ -1,0 +1,12 @@
+<%= turbo_frame_tag nested_dom_id(item.block, item) do %>
+  <div data-controller="accordion" class="block__item">
+    <div class="block__item--title">
+      <%= item.name %>
+      
+      <div data-action="accordion#toggle" class="btn-accordion">
+        <%= Icon.call("plus") %>
+      </div>
+    </div>
+    
+  </div>
+<% end %>

@@ -2,5 +2,6 @@
   <%= form_error_notification(@item) %>
   <%= f.input :name %>
   <%= f.input :content %>
+  <%= link_to "Back", user_path(@block.user) %>
   <%= f.submit %>
 <% end %>

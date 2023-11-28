@@ -1,0 +1,6 @@
+<%= turbo_frame_tag nested_dom_id(block, Item.new) do %>
+  <%= link_to "Add item", 
+    new_block_item_path(block), 
+    data: { turbo_frame: nested_dom_id(block, Item.new) } 
+  %>
+<% end %>

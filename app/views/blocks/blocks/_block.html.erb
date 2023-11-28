@@ -1,25 +1,21 @@
 <%= turbo_frame_tag block do %>
   <div class="block__item">
 
-    <div class="block__item--title">
+    <div class="block__title">
       <h2><%= block.name %></h2>
-      <%# <div class="accordion" id=accordionAll> %>
-        <%# <i class="fas fa-plus"></i> %>
-      <%# </div> %>
+      <div class="btn-accordion" data-action="accordion-all#toggleAll">
+        <%= Icon.call("plus") %>
+      </div>
     </div>
 
-    <div class="block__item--content">
+    <div id="block_<%= block.id %>_items" class="block__content">
       <% block.items.each do |item| %>    
         <%= turbo_frame_tag nested_dom_id(block, item), src: block_item_path(block, item), loading: "lazy" do %>
           <%= render "shared/spinner" %>
         <% end %>
       <% end %>
       
-      <%= turbo_frame_tag nested_dom_id(block, Item.new) %>
-      <%= link_to "Add item", 
-          new_block_item_path(block), 
-          data: { turbo_frame: nested_dom_id(block, Item.new) } 
-        %>
+      <%= render "blocks/blocks/add_item", block: block %>
     </div>
 
   </div>

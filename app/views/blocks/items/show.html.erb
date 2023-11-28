@@ -1,6 +1,1 @@
-<%= turbo_frame_tag nested_dom_id(@item.block, @item) do %>
-  <p>
-    <%= @item.name %> 
-  </p>
-  <%#= @item.content %> 
-<% end %>
+<%= render "item", item: @item %>

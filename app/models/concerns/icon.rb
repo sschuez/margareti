@@ -19,6 +19,7 @@ class Icon
       sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
       translate: '<i class="bi bi-translate"></i>',
       info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
+      plus: '<i class="fas fa-plus"></i>',
       edit_emoji: '<i class="emoji">✍️</i>',
       confirm_emoji: '<i class="emoji">👍</i>',
       cancel_emoji: '<i class="emoji">❌</i>'
