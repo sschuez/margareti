@@ -85,12 +85,17 @@
   text-decoration: none !important;
   transition: color 200ms !important;
 
+
   &:hover,
   &:focus,
   &:active {
     color: var(--color-primary-rotate) !important;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+  
   &--nav {
     border-bottom: 0.3rem transparent solid;
     
@@ -98,13 +103,5 @@
       border-bottom: 0.3rem var(--lime-green) solid;
       cursor: pointer;
     }
-  }
-}
-
-.btn-accordion {
-  color: var(--color-primary);
-  
-  &:hover {
-    cursor: pointer;
   }
 }

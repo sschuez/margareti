@@ -15,16 +15,23 @@ class Blocks::BlocksController < ApplicationController
     @block.user = @user
 
     if @block.save
-      redirect_to user_path(@user)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+        format.turbo_stream 
+      end
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @block = Block.find(params[:id])
     @block.destroy
-    redirect_to user_path(current_user)
+
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.turbo_stream { flash.now[:notice] = "Block deleted" }
+    end
   end
 
   private

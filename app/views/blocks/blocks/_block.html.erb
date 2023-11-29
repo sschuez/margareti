@@ -3,12 +3,18 @@
 
     <div class="block__title">
       <h2><%= block.name %></h2>
-      <div class="btn-accordion" data-action="accordion-all#toggleAll">
+      
+      <%= button_to block_path(block), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "button" do %>
+        <%= Icon.call("trash") %>
+      <% end %>
+
+      <div class="button" data-action="accordion-all#toggleAll">
         <%= Icon.call("plus") %>
       </div>
     </div>
 
-    <div id="block_<%= block.id %>_items" class="block__content">
+    <%= turbo_frame_tag nested_dom_id(block, "items"), class: "block__content" do %>
+    
       <% block.items.each do |item| %>    
         <%= turbo_frame_tag nested_dom_id(block, item), src: block_item_path(block, item), loading: "lazy" do %>
           <%= render "shared/spinner" %>
@@ -16,7 +22,8 @@
       <% end %>
       
       <%= render "blocks/blocks/add_item", block: block %>
-    </div>
+
+    <% end %>
 
   </div>
 <% end %>

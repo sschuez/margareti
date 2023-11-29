@@ -6,7 +6,7 @@ class Icon
   def initialize(icon)
     @icon = icon
     @icons = {
-      trash: '<i class="bi bi-trash-fill"></i>',
+      trash: '<i class="fas fa-trash-alt"></i>',
       edit: '<i class="bi bi-pencil-fill"></i>',
       confirm: '<i class="bi bi-check-circle-fill"></i>',
       cancel: '<i class="bi bi-x-circle-fill"></i>',
@@ -22,7 +22,8 @@ class Icon
       plus: '<i class="fas fa-plus"></i>',
       edit_emoji: '<i class="emoji">✍️</i>',
       confirm_emoji: '<i class="emoji">👍</i>',
-      cancel_emoji: '<i class="emoji">❌</i>'
+      cancel_emoji: '<i class="emoji">❌</i>',
+      bin_emoji: '<i class="emoji">🗑️</i>'
     }
   end
 

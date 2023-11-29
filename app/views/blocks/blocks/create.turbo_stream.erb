@@ -1,0 +1,4 @@
+<%= turbo_stream.append nested_dom_id(@user, "blocks") do %>
+  <%= render "blocks/blocks/block", block: @block %>
+<% end %>
+<%= turbo_stream.update nested_dom_id(@user, Block.new), "" %>
