@@ -10,7 +10,7 @@ module UsersHelper
   def photo_edit_link_for(user)
     description = user.photo.attached? ? "Edit" : "Add"
     turbo_frame_tag "photo-form" do
-      link_to "+ #{description} photo", edit_user_photo_path(user), data: { turbo_frame: "photo-form" }
+      link_to "#{description == "Add" ? "+ " : ""}#{description} photo", edit_user_photo_path(user), data: { turbo_frame: "photo-form" }
     end
   end
 end
