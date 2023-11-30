@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     end
 
     # ITEMS
-    resources :items, only: [:destroy] 
+    resources :items, only: [:show, :destroy]
+    resources :item_contents, only: [:show, :edit, :update]
   end
 
   # FILE UPLOADS

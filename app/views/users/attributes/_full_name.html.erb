@@ -1,17 +1,12 @@
 <%= turbo_frame_tag dom_id(user, "edit_full_name") do %>
-
-  <div class="profile__name">
+  <div class="profile__full_name">
     <% if user.full_name.present? %>
-
       <h1><%= user.full_name %></h1>
-      <%= link_to edit_user_attributes_path(user, attribute: "full_name"), class: "profile__name__edit" do %>
+      <%= link_to edit_user_attributes_path(user, attribute: "full_name"), class: "profile__full_name__edit" do %>
         <%= Icon.call("edit") %>
       <% end %>
-    
     <% else %>
-
       <%= render "users/attributes/empty_state", user: user, attribute: "full_name" %>
-
     <% end %>
   </div>
 <% end %>

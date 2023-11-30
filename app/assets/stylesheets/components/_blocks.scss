@@ -36,6 +36,16 @@
       display: flex;
       gap: 0.7rem;
     }
+
+    &__content {
+      position: relative;
+      padding: var(--space-xxxs);
+      background-color: var(--color-less-light) !important;
+      transition: max-height 0.2s ease-out;
+      border-radius: var(--border-radius);
+      // transform: translateX(-50%);
+      // margin: -12px 0 12px 0;
+    }
   }
 }
 

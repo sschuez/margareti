@@ -1,8 +1,8 @@
-<div class="empty-state empty-state--only-child">
+<div class="empty-state empty-state--only-child <%= 'empty-state--dark' if attribute == "bio" %>">
   <p class="empty-state__text">
-    There's no <%= attribute %> yet.
+    There's no <%= remove_underscore(attribute) %> yet.
   </p>
 
-  <%= link_to "Add #{remove_underscore(attribute)}", 
+  <%= link_to "+ Add #{remove_underscore(attribute)}", 
       edit_user_attributes_path(user, attribute: attribute) %>
 </div>

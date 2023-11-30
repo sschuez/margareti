@@ -4,10 +4,13 @@
       <div class="block__item__title">
         <%= item.name %>
         <%= actions_for(item) %>
-        <div data-action="accordion#toggle" class="button">
-          <%= Icon.call("plus") %>
-        </div>
+        <%= accordion_toggle_btn(item) %>
       </div>
     <% end %>
+    <div data-accordion-target="dropdown" class="block__item__content visually-hidden">
+      <%= turbo_frame_tag nested_dom_id(item, "content"), src: item_content_path(item), loading: "lazy" do %>
+        <%= render "shared/spinner" %>
+      <% end %>
+    </div>
   </div>
 <% end %>

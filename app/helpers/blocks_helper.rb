@@ -15,4 +15,21 @@ module BlocksHelper
   
     html
   end
+
+  def accordion_toggle_btn(item)
+    # if item.content.present?
+      content_tag :div, Icon.call("plus"), data: { action: "click->accordion#toggle" }, class: "button"
+    # end
+  end
+
+  def item_content_edit_btn(item)
+    return unless item.content.present?
+   
+    content_tag :div, class: "block__item__content--edit flex-end" do
+      link_to edit_item_content_path(item, data: { turbo_frame: nested_dom_id(item, "edit_content") }) do
+        Icon.call("edit")
+      end
+    end
+  end
+
 end
