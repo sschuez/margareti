@@ -1,29 +1,22 @@
 <%= turbo_frame_tag block do %>
   <div class="block__item">
-
-    <div class="block__title">
-      <h2><%= block.name %></h2>
-      
-      <%= button_to block_path(block), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "button" do %>
-        <%= Icon.call("trash") %>
-      <% end %>
-
-      <div class="button" data-action="accordion-all#toggleAll">
-        <%= Icon.call("plus") %>
+    <%= turbo_frame_tag nested_dom_id(block, "edit") do %>
+      <div class="block__title">
+        <h2><%= block.name %></h2>
+        <%= actions_for(block) %>
+        <div class="button" data-action="accordion-all#toggleAll">
+          <%= Icon.call("plus") %>
+        </div>
       </div>
-    </div>
-
-    <%= turbo_frame_tag nested_dom_id(block, "items"), class: "block__content" do %>
-    
-      <% block.items.each do |item| %>    
-        <%= turbo_frame_tag nested_dom_id(block, item), src: block_item_path(block, item), loading: "lazy" do %>
-          <%= render "shared/spinner" %>
-        <% end %>
-      <% end %>
-      
-      <%= render "blocks/blocks/add_item", block: block %>
-
     <% end %>
-
+    <%= turbo_frame_tag nested_dom_id(block, "items"), class: "block__content" do %>
+      <% block.items.each do |item| %>    
+        <%#= turbo_frame_tag dom_id(item), src: block_item_path(block, item), loading: "lazy" do %>
+          <%#= render "shared/spinner" %>
+        <%# end %>
+        <%= render "blocks/items/item", item: item %>
+      <% end %>
+      <%= render "blocks/blocks/add_item", block: block %>
+    <% end %>
   </div>
 <% end %>

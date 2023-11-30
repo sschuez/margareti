@@ -7,7 +7,7 @@ class Icon
     @icon = icon
     @icons = {
       trash: '<i class="fas fa-trash-alt"></i>',
-      edit: '<i class="bi bi-pencil-fill"></i>',
+      edit: '<i class="fas fa-edit"></i>',
       confirm: '<i class="bi bi-check-circle-fill"></i>',
       cancel: '<i class="bi bi-x-circle-fill"></i>',
       handle: '<i class="bi bi-grip-horizontal handle mt-xxs ml-s"></i>',

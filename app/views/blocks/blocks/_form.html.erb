@@ -1,9 +1,18 @@
-<%= turbo_frame_tag nested_dom_id(user, block) do %>
-  
+<%= turbo_frame_tag nested_dom_id(block, "form") do %>
   <%= simple_form_for [user, block] do |f| %>
     <%= form_error_notification(block) %>
-    <%= f.input :name %>
-    <%= f.submit %>
+    <div class="form__container">
+      <%= f.input :name %>
+      <div class="form__container__actions">
+        <%= link_to user_path(user),
+            data: { turbo_frame: block.new_record? ? nested_dom_id(user, "blocks") : dom_id(block) }, 
+            class: "btn btn--light btn--emoji" do %>
+          <%= Icon.call("cancel_emoji") %>
+        <% end %>
+        <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+          <%= Icon.new("confirm_emoji").call %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-
 <% end %>

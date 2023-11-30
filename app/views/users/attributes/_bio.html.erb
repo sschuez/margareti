@@ -5,7 +5,7 @@
       <div class="profile__bio">
         <p><%= simple_format user.bio %></p>
         <%= link_to edit_user_attributes_path(user, attribute: "bio"), class: "profile__bio__edit" do %>
-          <%= Icon.call("edit_emoji") %>
+          <%= Icon.call("edit") %>
         <% end %>
       </div>
       <% else %>

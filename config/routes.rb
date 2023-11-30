@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
+  # ERRORS
   match '/404', via: :all, to: 'errors#not_found'
   match '/500', via: :all, to: 'errors#internal_server_error'
-  
-  # ROOTS
   
   # USERS
   devise_for :users
@@ -19,13 +18,20 @@ Rails.application.routes.draw do
 
   # BLOCKS
   scope module: :blocks do
-    # Custom route for 'new' that includes the user ID, but does not namespace under users
+    # BLOCKS - Custom routes to avoid namespacing under users
     get 'users/:user_id/blocks/new', to: 'blocks#new', as: :new_user_block
     post 'users/:user_id/blocks', to: 'blocks#create', as: :user_blocks
-    # Standard non-nested routes for blocks
+    get 'users/:user_id/blocks/:id/edit', to: 'blocks#edit', as: :edit_user_block
+    patch 'users/:user_id/blocks/:id', to: 'blocks#update', as: :user_block
+    
+    # BLOCKS
     resources :blocks, only: [:destroy] do
-      resources :items, only: [:new, :create, :show, :destroy]
+      # ITEMS
+      resources :items, only: [:new, :create, :edit, :update]
     end
+
+    # ITEMS
+    resources :items, only: [:destroy] 
   end
 
   # FILE UPLOADS

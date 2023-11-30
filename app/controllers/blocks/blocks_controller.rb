@@ -2,11 +2,6 @@ class Blocks::BlocksController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @block = Block.new
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def create
@@ -24,6 +19,23 @@ class Blocks::BlocksController < ApplicationController
     end
   end
 
+  def edit
+    @block = Block.find(params[:id])
+  end
+
+  def update
+    @block = Block.find(params[:id])
+
+    if @block.update(block_params)
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { flash.now[:notice] = "Block updated" }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @block = Block.find(params[:id])
     @block.destroy
@@ -37,6 +49,6 @@ class Blocks::BlocksController < ApplicationController
   private
 
   def block_params
-    params.require(:block).permit(:name, :position)
+    params.require(:block).permit(:name)
   end
 end

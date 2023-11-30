@@ -1,7 +1,17 @@
-<%= simple_form_for [@block, @item] do |f| %>
-  <%= form_error_notification(@item) %>
-  <%= f.input :name %>
-  <%= f.input :content %>
-  <%= link_to "Back", user_path(@block.user) %>
-  <%= f.submit %>
+<%= simple_form_for [block, item] do |f| %>
+  <%= form_error_notification(item) %>
+  <div class="form__container">
+    <%= f.input :name %>
+    <%#= f.input :content %>
+    <div class="form__container__actions">
+      <%= link_to user_path(block.user), 
+          data: { turbo_frame: item.new_record? ? nested_dom_id(block, "items") : dom_id(item) },
+          class: "btn btn--light btn--emoji" do %>
+        <%= Icon.call("cancel_emoji") %>
+      <% end %>
+      <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+        <%= Icon.new("confirm_emoji").call %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

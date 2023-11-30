@@ -23,10 +23,31 @@ class Blocks::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    
+    if @item.update(item_params)
+      respond_to do |format|
+        format.html { redirect_to user_path(@item.block.user) }
+        format.turbo_stream {flash.now[:notice] = "Item updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_path(current_user)
+    
+    respond_to do |format|
+      format.html { redirect_to user_path(@item.block.user) }
+      format.turbo_stream { flash.now[:notice] = "Item deleted." }
+    end
   end
 
   private
