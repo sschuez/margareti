@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_152123) do
     t.bigint "block_id", null: false
     t.string "name"
     t.text "content"
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_items_on_block_id"

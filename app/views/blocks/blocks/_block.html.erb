@@ -1,4 +1,8 @@
-<%= turbo_frame_tag block, data: { controller: "accordion-all" } do %>
+<%= turbo_frame_tag block, 
+    data: { 
+      controller: "accordion-all", 
+      sortable_url: order_block_path(block) 
+    } do %>
   <div class="block__item">
     <%= turbo_frame_tag nested_dom_id(block, "edit") do %>
       <div class="block__title">
@@ -9,8 +13,14 @@
         </div>
       </div>
     <% end %>
-    <%= turbo_frame_tag nested_dom_id(block, "items"), class: "block__content" do %>
-      <% block.items.each do |item| %>    
+    <%= turbo_frame_tag nested_dom_id(block, "items"), 
+        data: { 
+          controller: "sortable", 
+          sortable_block_id: block.id, 
+          sortable_group_value: "items" 
+        }, 
+        class: "block__content" do %>
+      <% block.items.ordered.each do |item| %>    
         <%= render "blocks/items/item", item: item %>
       <% end %>
       <%= render "blocks/blocks/add_item", block: block %>

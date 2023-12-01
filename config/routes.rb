@@ -26,8 +26,12 @@ Rails.application.routes.draw do
     
     # BLOCKS
     resources :blocks, only: [:destroy] do
+      member { put :order }       
+      
       # ITEMS
-      resources :items, only: [:new, :create, :edit, :update]
+      resources :items, only: [:new, :create, :edit, :update] do
+        member { put :order }
+      end
     end
 
     # ITEMS

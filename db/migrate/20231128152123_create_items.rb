@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[7.1]
       t.belongs_to :block, null: false, foreign_key: true
       t.string :name
       t.text :content
+      t.integer :position
 
       t.timestamps
     end

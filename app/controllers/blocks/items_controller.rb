@@ -46,6 +46,14 @@ class Blocks::ItemsController < ApplicationController
     end
   end
 
+  def order
+    @item = Item.find(params[:id])
+    @item.update(block_id: params[:new_block_id])
+    @item.insert_at(params[:new_position])
+
+    head :no_content
+  end
+
   private
 
   def item_params

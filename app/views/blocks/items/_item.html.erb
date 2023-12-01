@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(item) do %>
+<%= turbo_frame_tag dom_id(item), data: { sortable_url: order_block_item_path(item.block, item) } do %>
   <div data-controller="accordion" class="block__item">
     <%= turbo_frame_tag nested_dom_id(item, "edit") do %>
       <div class="block__item__title">

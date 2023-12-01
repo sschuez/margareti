@@ -46,6 +46,13 @@ class Blocks::BlocksController < ApplicationController
     end
   end
 
+  def order
+    @block = Block.find(params[:id])
+    @block.insert_at(params[:new_position])
+
+    head :no_content
+  end
+
   private
 
   def block_params

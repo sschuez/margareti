@@ -10,7 +10,7 @@
 
 <%= turbo_frame_tag nested_dom_id(@user, "blocks"), data: { controller: "sortable" }, class: "blocks" do %>
   <%= render "blocks/blocks/empty_state", user: @user %>
-  <% @user.blocks.each do |block| %>
+  <% @user.blocks.ordered.each do |block| %>
     <%= render "blocks/blocks/block", block: block %>
   <% end %>
 <% end %>
