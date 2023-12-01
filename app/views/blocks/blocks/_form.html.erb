@@ -1,4 +1,6 @@
-<%= turbo_frame_tag nested_dom_id(block, "form") do %>
+<% wrapper_class = block.new_record? ? "empty-state empty-state--new-block" : "" %>
+
+<%= turbo_frame_tag nested_dom_id(block, "form"), class: wrapper_class do %>
   <%= simple_form_for [user, block] do |f| %>
     <%= form_error_notification(block) %>
     <div class="form__container">

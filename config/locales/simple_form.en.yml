@@ -20,8 +20,8 @@ en:
       block:
         name: Name of the block
       item:
-        name: Name of the item
-        content: Content of the item
+        name: Name of the entry
+        content: Content of the entry
     labels:
       user:
         full_name: 'Full name'

@@ -40,6 +40,10 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
+
+    &--new-form {
+      border: var(--border);
+    }
   
     &__title {
       margin-bottom: 0.25rem;

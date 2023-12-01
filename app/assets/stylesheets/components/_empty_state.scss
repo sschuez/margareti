@@ -17,6 +17,11 @@
     border-color: var(--color-text-muted-light);
   }
 
+  &--new-block {
+    margin: 0 !important;
+    padding: var(--space-s) !important;
+  }
+
   &--only-child {
     display: none;
 
