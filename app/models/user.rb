@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :blocks, dependent: :destroy
   has_many :items, through: :blocks
+  has_many :posts, dependent: :destroy
   has_one_attached  :photo
 
   def broadcast_photo_destroyed

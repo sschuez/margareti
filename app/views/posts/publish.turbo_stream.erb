@@ -1,0 +1,5 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "post_#{@post.id}_publish_btn" do %>
+  <%= render "posts/publish_btn", post: @post %>
+<% end %>

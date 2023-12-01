@@ -11,3 +11,12 @@ pin "dropzone", to: "https://ga.jspm.io/npm:dropzone@6.0.0-beta.2/dist/dropzone.
 pin "just-extend", to: "https://ga.jspm.io/npm:just-extend@5.1.1/index.esm.js"
 pin "stimulus-textarea-autogrow", to: "https://ga.jspm.io/npm:stimulus-textarea-autogrow@4.1.0/dist/stimulus-textarea-autogrow.mjs"
 pin "sortablejs", to: "https://ga.jspm.io/npm:sortablejs@1.15.1/modular/sortable.esm.js"
+# MARKDOWN EDITOR
+pin "easymde", to: "https://ga.jspm.io/npm:easymde@2.18.0/src/js/easymde.js"
+pin "codemirror", to: "https://ga.jspm.io/npm:codemirror@5.65.14/lib/codemirror.js"
+pin "codemirror-spell-checker", to: "https://ga.jspm.io/npm:codemirror-spell-checker@1.1.2/src/js/spell-checker.js"
+pin "codemirror/", to: "https://ga.jspm.io/npm:codemirror@5.65.14/"
+pin "fs", to: "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/browser/fs.js"
+pin "marked", to: "https://ga.jspm.io/npm:marked@4.3.0/lib/marked.cjs"
+pin "typo-js", to: "https://ga.jspm.io/npm:typo-js@1.2.3/typo.js"
+# END MARKDOWN EDITOR

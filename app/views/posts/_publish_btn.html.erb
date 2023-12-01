@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "post_#{post.id}_publish_btn" do %>
+  <%= button_to publish_post_path(post), class: "button emoji", method: :patch do %>
+    <%= post.published_icon %>
+  <% end %>
+<% end %>

@@ -1,0 +1,26 @@
+<%= simple_form_for(post) do |f| %>
+  <%= form_error_notification(post) %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :subtitle,
+          input_html: {
+            data: {
+              controller: "textarea-autogrow"
+            } 
+          } %>
+    
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css"> 
+    <%= f.input :body, 
+          input_html: {
+            data: { 
+              controller: "markdown-upload",
+              markdown_upload_url_value: rails_direct_uploads_url
+            } 
+          } %>
+  </div>
+
+  <div class="form-actions flex-end">
+    <%= f.button :submit, class: "btn btn--dark" %>
+  </div>
+<% end %>

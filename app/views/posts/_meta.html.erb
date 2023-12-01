@@ -1,0 +1,22 @@
+<%# 
+  set_meta_tags(
+    title: translated_content_with_language(post.title),
+    description: translated_content_with_language(post.subtitle),
+    keywords: post.keywords ? post.keywords : t('application.meta_keywords'),
+    separator: "&mdash;".html_safe,
+    og: {
+      title: translated_content_with_language(post.title),
+      description: translated_content_with_language(post.subtitle),
+      type: "website",
+      url: request.original_url,
+      image: post.image_or_default
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "translaite",
+      title: translated_content_with_language(post.title),
+      description: translated_content_with_language(post.subtitle),
+      image: post.image_or_default
+    }
+  )
+%>

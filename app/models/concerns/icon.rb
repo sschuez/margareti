@@ -17,6 +17,8 @@ class Icon
       close_lg: '<i class="bi bi-x-lg"></i>',
       sign_out: '<i class="bi bi-box-arrow-right"></i>',
       sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
+      published: '<i class="fas fa-eye"></i>',
+      unpublished: '<i class="fas fa-eye-slash"></i>',
       translate: '<i class="bi bi-translate"></i>',
       info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
       drag: '<i class="fas fa-grip-horizontal"></i>',

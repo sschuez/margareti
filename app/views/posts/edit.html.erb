@@ -1,0 +1,12 @@
+<div class="narrow-container">
+
+  <div class="my-header">
+    <h1>Edit post</h1>
+  </div>
+
+  <%= render 'form', post: @post %>
+
+  <div>
+    <%= link_to sanitize("&larr; Back to post"), post_path(@post) %>
+  </div>
+</div>

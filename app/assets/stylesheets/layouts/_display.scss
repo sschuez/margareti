@@ -13,3 +13,12 @@
   justify-content: center !important;
   align-items: center !important;
 }
+
+.justify-space-between {
+  display: flex;
+  justify-content: space-between;
+
+  &--actions {
+    gap: 1.5rem;
+  }
+}

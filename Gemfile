@@ -79,4 +79,7 @@ end
 
 gem 'sidekiq'
 gem 'acts_as_list'
-# gem 'ranked-model'
+
+# Markdown
+gem "redcarpet", "~> 3.6"
+gem "rouge", "~> 4.1"

@@ -1,0 +1,56 @@
+<%= render "meta", post: @post %>
+
+<!-- Post Content-->
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        
+        <%= markdown @post.body %>
+        
+        <%#= render "shared/sharer_btn", 
+          url: post_url(@post), 
+          title: translated_content_with_language(@post.title), 
+          description: translated_content_with_language(@post.subtitle) %>
+          
+      </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- Actions-->
+<div class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7 justify-space-between">
+        
+
+        <%= link_to sanitize("&larr; #{t("navigation.back_to", where: t("activerecord.models.post", count: 2))}"), posts_path %>
+        
+        <%# if policy(@post).update? %>
+          <div class="d-flex">
+            <div class="post__actions">
+              
+              <%= link_to edit_post_path(@post) do %>
+                <%= Icon.call("edit") %>
+              <% end %>
+              
+              <%= button_to post_path(@post), 
+                  method: :delete, 
+                  form: { data: { turbo_confirm: "Are you sure?" } }, 
+                  target: :_top,
+                  class: "button" do %>
+                <%= Icon.call("trash") %>
+              <% end %>
+              
+              <%= render "posts/publish_btn", post: @post %>
+              
+            </div>
+          </div>
+        <%# end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
