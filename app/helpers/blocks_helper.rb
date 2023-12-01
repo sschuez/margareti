@@ -5,6 +5,10 @@ module BlocksHelper
     
     html = ''.html_safe
   
+    html << link_to("#", class: "sortable-handle") do
+      Icon.call("drag")
+    end
+
     html << link_to(edit_path) do
       Icon.call("edit")
     end

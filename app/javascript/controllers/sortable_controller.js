@@ -12,7 +12,9 @@ export default class extends Controller {
     Sortable.create(this.element, {
       onEnd: this.onEnd.bind(this),
       filter: ".sortable-ignore-elements",
-      group: this.groupValue      
+      animation: 150,
+      group: this.groupValue,      
+      handle: ".sortable-handle"
     })
   }
 
