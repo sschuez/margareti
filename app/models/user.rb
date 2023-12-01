@@ -17,4 +17,8 @@ class User < ApplicationRecord
       target: "avatar_user_#{self.id}"
     )
   end
+
+  def email_username
+    email.split('@').first
+  end
 end

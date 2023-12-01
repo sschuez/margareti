@@ -22,4 +22,8 @@ module ApplicationHelper
   def remove_underscore(word)
     word.gsub("_", " ")
   end
+
+  def formatted_date(date)
+    date.strftime("%e %b %Y")
+  end
 end
