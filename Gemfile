@@ -77,3 +77,4 @@ group :test do
 end
 
 gem 'sidekiq'
+gem 'acts_as_list'

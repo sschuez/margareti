@@ -10,3 +10,4 @@ pin "@rails/activestorage", to: "https://ga.jspm.io/npm:@rails/activestorage@7.1
 pin "dropzone", to: "https://ga.jspm.io/npm:dropzone@6.0.0-beta.2/dist/dropzone.mjs"
 pin "just-extend", to: "https://ga.jspm.io/npm:just-extend@5.1.1/index.esm.js"
 pin "stimulus-textarea-autogrow", to: "https://ga.jspm.io/npm:stimulus-textarea-autogrow@4.1.0/dist/stimulus-textarea-autogrow.mjs"
+pin "sortablejs", to: "https://ga.jspm.io/npm:sortablejs@1.15.1/modular/sortable.esm.js"
