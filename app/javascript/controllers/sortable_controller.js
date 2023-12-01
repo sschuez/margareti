@@ -14,7 +14,10 @@ export default class extends Controller {
       filter: ".sortable-ignore-elements",
       animation: 150,
       group: this.groupValue,      
-      handle: ".sortable-handle"
+      handle: ".sortable-handle",  // Drag handle selector within list items
+      ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+      chosenClass: "sortable-chosen",  // Class name for the chosen item
+      dragClass: "sortable-drag",   // Class name for the dragging item
     })
   }
 

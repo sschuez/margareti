@@ -19,7 +19,7 @@ class Icon
       sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
       translate: '<i class="bi bi-translate"></i>',
       info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
-      drag: '<i class="fas fa-grip-lines"></i>',
+      drag: '<i class="fas fa-grip-horizontal"></i>',
       plus: '<i class="fas fa-plus"></i>',
       edit_emoji: '<i class="emoji">✍️</i>',
       confirm_emoji: '<i class="emoji">👍</i>',

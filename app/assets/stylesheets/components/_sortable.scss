@@ -1,0 +1,18 @@
+/* Basic styles for the dragged item */
+.sortable-drag {
+  opacity: 0.8;
+  background-color: #f0f0f0;
+  cursor: move; /* Ensures the cursor indicates a move action */
+}
+
+/* Basic styles for the ghost placeholder */
+.sortable-ghost {
+  opacity: 0.5;
+  background-color: #c8ebfb;
+  border: 2px solid #c8ebfb; /* Solid border to avoid issues with dashed styles */
+}
+
+/* Basic styles for the chosen item */
+.sortable-chosen {
+  background-color: #e8e8e8;
+}
