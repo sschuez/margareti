@@ -18,7 +18,7 @@ module BlocksHelper
 
   def accordion_toggle_btn(item)
     # if item.content.present?
-      content_tag :div, Icon.call("plus"), data: { action: "click->accordion#toggle" }, class: "button"
+      content_tag :div, Icon.call("plus"), data: { action: "click->accordion#toggle", accordion_target: "icon" }, class: "button"
     # end
   end
 

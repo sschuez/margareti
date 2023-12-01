@@ -7,7 +7,7 @@ en:
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
+      html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
@@ -17,6 +17,11 @@ en:
         bio: Tell about yourself
         email: Your email address
         password: Your password
+      block:
+        name: Name of the block
+      item:
+        name: Name of the item
+        content: Content of the item
     labels:
       user:
         full_name: 'Full name'

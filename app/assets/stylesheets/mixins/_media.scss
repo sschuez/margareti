@@ -10,4 +10,14 @@
   @if $query == phone {
     @media (max-width: 54rem) { @content; }
   }
+  
+  @if $query == desktopAndUp {
+    @media (min-width: 1300px) { @content; }
+  }
+}
+
+@mixin grid-layout($columns, $padding: 0) {
+  grid-template-columns: repeat($columns, minmax(var(--block-min-width), 1fr));
+  padding-left: $padding;
+  padding-right: $padding;
 }

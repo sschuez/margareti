@@ -1,7 +1,5 @@
 <%= turbo_frame_tag dom_id(user, "photo"), class: "flex-column mb-xxl" do %>
-
   <%= turbo_stream_from dom_id(@user, "photo") %>
   <%= render "users/photos/avatar", user: user %>
   <%= photo_edit_link_for(user) %>
-
 <% end %>

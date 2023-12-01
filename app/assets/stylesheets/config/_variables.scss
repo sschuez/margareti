@@ -69,4 +69,9 @@
   // Shadows
   --shadow-large:  2px 4px 10px hsl(0 0% 0% / 0.1);
   --shadow-small:  1px 3px 6px hsl(0 0% 0% / 0.1);
+
+  // Grid
+  --block-min-width: 16rem; // 7cm width for each block
+  --block-gap: 2rem; // Gap between blocks
+  --container-max-width: 80rem; // Max width of the container
 }

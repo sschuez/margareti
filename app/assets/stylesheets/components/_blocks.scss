@@ -1,17 +1,28 @@
+@use "mixins/media" as *;
+
 .blocks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 0;
-  margin-top: 2rem;
-  // align-items: center // Changes cards to their size even if grid is larger
+  grid-template-columns: 1fr; // Single column by default
+  gap: var(--block-gap);
+  margin-top: var(--block-gap);
+  padding-left: var(--space-xs);
+  padding-right: var(--space-xs);
+
+  // Medium devices (tablets, 768px and up) - two columns
+  @include media(tabletAndUp) {
+    @include grid-layout(2, var(--space-m));
+  }
+
+  // Large devices (desktops, 1300px and up) - three columns
+  @include media('desktopAndUp') {
+    @include grid-layout(3, var(--space-l));
+  }
 }
 
 .block {
   text-align: left;
-  // width: 300px;
   height: auto;
-  margin: 0 auto;
+  width: 100%; // Ensure block takes full width of grid column
 
   &__title {
     display: flex;
@@ -31,66 +42,19 @@
     margin-bottom: 1rem;
   
     &__title {
-      // font-size: 1.2rem;
       margin-bottom: 0.25rem;
       display: flex;
+      font-size: var(--font-size-l);
       gap: 0.7rem;
     }
 
     &__content {
       position: relative;
+      font-size: var(--font-size-m);
       padding: var(--space-xxxs);
       background-color: var(--color-less-light) !important;
       transition: max-height 0.2s ease-out;
       border-radius: var(--border-radius);
-      // transform: translateX(-50%);
-      // margin: -12px 0 12px 0;
     }
   }
 }
-
-/* RESPONSIVE */
-
-/* Smallest device */
-@media (min-width: 100px) and (max-width: 575px) {
-  .block {
-    // padding: 12px 12px 64px 12px;
-    padding-left: 20px;
-  }
-  
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  .block {
-    // padding: 12px 24px 64px 24px; 
-    padding-left: 12px;
-  }
-  
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .block {
-    // padding: 12px 36px 64px 36px; 
-    padding-left: 42px;
-  }
-
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .block {
-    // padding: 24px 70px 64px 70px; 
-  }
-  
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .block {
-    // padding: 24px 100px 64px 100px; 
-  }
-  
-}
-

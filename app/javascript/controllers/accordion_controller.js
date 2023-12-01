@@ -2,23 +2,29 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="accordion"
 export default class extends Controller {
-  static targets = [ "dropdown" ]
+  static targets = [ "dropdown", "icon" ]
 
   connect() {
     this.state = "closed"
   }
 
+  get state() {
+    return this._state;
+  }
+
+  set state(value) {
+    this._state = value;
+  }
+
   toggle(event) {
     this.dropdownTarget.classList.toggle("visually-hidden")
-    this.icon = event.target
     this.state = this.state === "closed" ? "open" : "closed"
-    
-    console.log(this.state)
+    const iconClassList = this.iconTarget.firstElementChild.classList
     
     if (this.state === "open") {
-      this.icon.classList.replace("fa-plus", "fa-minus")
+      iconClassList.replace("fa-plus", "fa-minus")
     } else {
-      this.icon.classList.replace("fa-minus", "fa-plus")
+      iconClassList.replace("fa-minus", "fa-plus")
     }
   }
 }
