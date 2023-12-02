@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :block
+  has_one :user, through: :block
 
   validates :name, presence: true
 

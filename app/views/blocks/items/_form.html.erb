@@ -1,10 +1,9 @@
-<%= simple_form_for [block, item] do |f| %>
+<%= simple_form_for([block, item].compact) do |f| %>
   <%= form_error_notification(item) %>
   <div class="form__container">
-    <%= f.input :name %>
-    <%#= f.input :content %>
+    <%= f.input :name, input_html: { data: { controller: "autofocus" } } %>
     <div class="form__container__actions">
-      <%= link_to user_path(block.user), 
+      <%= link_to user_path(item.new_record? ? block.user : item.user), 
           data: { turbo_frame: item.new_record? ? nested_dom_id(block, "items") : dom_id(item) },
           class: "btn btn--light btn--emoji" do %>
         <%= Icon.call("cancel_emoji") %>

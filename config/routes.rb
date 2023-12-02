@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   match '/404', via: :all, to: 'errors#not_found'
   match '/500', via: :all, to: 'errors#internal_server_error'
   
-  # USERS
+  # USERS DEVISE
   devise_for :users
+  # USERS NAMESPACE
   scope module: :users do
     authenticated :user do
       root to: redirect { |path_params, req| "/users/#{req.env['warden'].user(:user).id}" }, as: :authenticated_root
@@ -16,26 +17,21 @@ Rails.application.routes.draw do
     end
   end
 
-  # BLOCKS
+  # BLOCKS NAMESPACE
   scope module: :blocks do
-    # BLOCKS - Custom routes to avoid namespacing under users
-    get 'users/:user_id/blocks/new', to: 'blocks#new', as: :new_user_block
-    post 'users/:user_id/blocks', to: 'blocks#create', as: :user_blocks
-    get 'users/:user_id/blocks/:id/edit', to: 'blocks#edit', as: :edit_user_block
-    patch 'users/:user_id/blocks/:id', to: 'blocks#update', as: :user_block
-    
     # BLOCKS
-    resources :blocks, only: [:destroy] do
-      member { put :order }       
-      
+    resources :users, only: [] do
+      resources :blocks, except: [:index], shallow: true
+    end
+
+    resources :blocks, only: [] do
+      member { put :order }
       # ITEMS
-      resources :items, only: [:new, :create, :edit, :update] do
+      resources :items, except: [:index], shallow: true do
         member { put :order }
       end
     end
-
     # ITEMS
-    resources :items, only: [:show, :destroy]
     resources :item_contents, only: [:show, :edit, :update]
   end
 

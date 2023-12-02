@@ -1,7 +1,7 @@
 <%= simple_form_for item, url: item_content_path(item), method: :patch, html: { class: "form__container--item-content" } do |f| %>
   <%= form_error_notification(item) %>
   <div class="form__container">
-    <%= f.input :content %>
+    <%= f.input :content, input_html: { data: { controller: "autofocus" } } %>
     <div class="form__container__actions">
       <%= link_to user_path(item.block.user), 
           data: { turbo_frame: dom_id(item) },

@@ -1,5 +1,5 @@
 <h1>Edit block <%= @block.name %></h1>
 
 <%= turbo_frame_tag nested_dom_id(@block, "edit") do %>
-  <%= render "form", user: @block.user, block: @block %>
+  <%= render "form", user: nil, block: @block %>
 <% end %>

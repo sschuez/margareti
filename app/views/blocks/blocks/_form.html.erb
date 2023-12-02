@@ -1,12 +1,12 @@
 <% wrapper_class = block.new_record? ? "empty-state empty-state--new-block" : "" %>
 
 <%= turbo_frame_tag nested_dom_id(block, "form") do %>
-  <%= simple_form_for [user, block], html: { class: wrapper_class } do |f| %>
+  <%= simple_form_for([user, block].compact, html: { class: wrapper_class }) do |f| %>
     <%= form_error_notification(block) %>
     <div class="form__container">
-      <%= f.input :name %>
+      <%= f.input :name, input_html: { data: { controller: "autofocus" } } %>
       <div class="form__container__actions">
-        <%= link_to user_path(user),
+        <%= link_to user_path(block.new_record? ? user : block.user),
             data: { turbo_frame: block.new_record? ? nested_dom_id(user, "blocks") : dom_id(block) }, 
             class: "btn btn--light btn--emoji" do %>
           <%= Icon.call("cancel_emoji") %>

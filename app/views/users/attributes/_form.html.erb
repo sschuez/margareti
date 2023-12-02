@@ -3,9 +3,8 @@
   <%= form_error_notification(user) %>
   <div class="form__container"> 
     <%= f.input attribute.to_sym,
-          autofocus: true,
           input_html: { autocomplete: attribute, 
-                        data: { controller: "textarea-autogrow" } },
+                        data: { controller: "textarea-autogrow autofocus" } },
           wrapper_html: { class: "form__container__input--#{attribute}" } %>
     <div class="form__container__actions">
       <%= link_to user_path(user), class: "btn btn--light btn--emoji" do %>
