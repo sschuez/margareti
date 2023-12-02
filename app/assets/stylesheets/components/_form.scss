@@ -3,10 +3,6 @@
   flex-wrap: wrap;
   gap: var(--space-xs);
 
-  &__group {
-    flex: 1;
-  }
-
   &__checkbox {
     margin-right: var(--space-xs);
   }
@@ -75,6 +71,10 @@
   }
 }
 
+.form-inputs input {
+  margin-bottom: var(--space-xs);
+}
+
 .upload-photo {
   padding: 10px 24px;
   cursor: pointer;
@@ -83,3 +83,4 @@
   background-color: var(--color-light) !important;
   border-radius: 5px;
 }
+

@@ -10,3 +10,15 @@
 .editor-toolbar.fullscreen {
   margin-top: 3rem;
 }
+
+.EasyMDEContainer {
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+  .editor-toolbar {
+    border: var(--border) !important;
+  }
+  .cm-s-easymde {
+    border: var(--border) !important;
+    border-top: none !important;
+  }
+}
