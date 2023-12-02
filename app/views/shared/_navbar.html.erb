@@ -1,19 +1,32 @@
-<header class="navbar">
-  
-  <%= link_to "LOGO", root_path, class: "navbar__brand" %>
-  
-  <% if user_signed_in? %>
-    <div class="navbar__name">
-      <%= current_user.email %>
+<header data-controller="navbar">
+  <nav class="navbar">
+    <%= link_to "🥥", root_path, class: "navbar__brand" %>
+    
+    <div class="navbar__content">
+
+      <%= navbar_toggle_buttons %>
+      
+      <ul class="navbar__list" data-navbar-target="navList">
+
+        <%#= navbar_link("Umfrage", new_survey_submission_path(1)) %>
+        <%#= navbar_link(Article.model_name.human(count: :many).capitalize, articles_path) %>
+
+        <% if user_signed_in? %>
+          <%# if current_user&.admin? %>
+            <%#= navbar_link(Submission.model_name.human(count: :many).capitalize, surveys_path) %>
+            <%#= navbar_link("Einladungen", invites_path) %>
+          <%# end %>
+          <%= navbar_button("Sign out", destroy_user_session_path, method: :delete) %>
+        <% else %>
+          <%= navbar_link("Sign in", new_user_session_path) %>
+        <% end %>
+
+      </ul>
+
     </div>
-    <%= button_to "Sign out",
-                  destroy_user_session_path,
-                  method: :delete,
-                  class: "btn btn--secondary" %>
-  <% else %>
-    <%= link_to "Sign in",
-                new_user_session_path,
-                class: "btn btn--secondary navbar__right" %>
-  <% end %>
+    
+  </nav>
+
+  <div class="overlay" data-action="click->navbar#open"></div>
 </header>
 
