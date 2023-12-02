@@ -1,14 +1,19 @@
 <%= simple_form_for item, url: item_content_path(item), method: :patch, html: { class: "form__container--item-content" } do |f| %>
   <%= form_error_notification(item) %>
-  <div class="form__container">
+  <div class="form__container form__container--no-flex">
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css"> 
     <%= f.input :content, 
           input_html: { 
             data: { 
-              controller: "autofocus"
+              controller: "autofocus markdown-upload",
+              markdown_upload_url_value: rails_direct_uploads_url,
+              markdown_upload_toolbar_value: [ 
+                "bold", "italic", "heading-3", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview"
+              ]
             }
           },
           wrapper_html: { class: "form__container__input--item-content" } %>
-    <div class="form__container__actions">
+    <div class="form__container__actions flex-end">
       <%= link_to user_path(item.block.user), 
           data: { turbo_frame: dom_id(item) },
           class: "btn btn--light btn--emoji" do %>

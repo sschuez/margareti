@@ -2,6 +2,8 @@
   <%= turbo_frame_tag nested_dom_id(item, "edit_content") do %>
     <%= item_content_edit_btn(item) %>
     <%= render "empty_state", item: item unless item.content.present? %>
-    <%= simple_format item.content %>
+    <div class="markdow-content">
+      <%= markdown item.content %>
+    </div>
   <% end %>
 <% end %>

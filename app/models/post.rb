@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   # acts_as_list add_new_at: :top, top_of_list: 0, scope: :user
   acts_as_list scope: :user
   
-  validates :title, presence: true
+  validates :title, :body, presence: true
   
   scope :ordered, -> { order(position: :asc) }
   scope :published, -> { where(published: true) }

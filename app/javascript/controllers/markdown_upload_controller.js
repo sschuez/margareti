@@ -3,15 +3,16 @@ import { DirectUpload } from "@rails/activestorage"
 import easyMDE from "easymde"
 
 export default class extends Controller {
-  static values = { url: String }
+  static values = { 
+    url: String,
+    toolbar: Array
+  }
 
   connect() {
     this.easyMDE = new easyMDE({
       element: this.element,
       allowDropFileTypes: ["image/jpeg", "image/png", "image/gif"],
-      toolbar: [
-        "undo", "redo", "|", "bold", "italic", "strikethrough", "|", "heading-1", "heading-2", "heading-3", "|", "code", "quote", "|", "unordered-list", "ordered-list", "|", "link", "horizontal-rule", "|", "preview", "side-by-side", "fullscreen", "|", "guide"
-      ]
+      toolbar: this.toolbarValue
     })
     this.dropUpload()
     this.pasteUpload()

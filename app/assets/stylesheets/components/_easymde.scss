@@ -22,3 +22,9 @@
     border-top: none !important;
   }
 }
+
+.form__container--no-flex {
+  .EasyMDEContainer {
+    background-color: var(--color-background) !important;
+  }
+}

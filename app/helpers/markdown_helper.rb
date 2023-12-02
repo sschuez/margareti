@@ -2,7 +2,7 @@ require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
 
-module MardownHelper
+module MarkdownHelper
   class HTML < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
   end
