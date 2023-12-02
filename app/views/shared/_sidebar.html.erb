@@ -1,0 +1,59 @@
+<div class="sidebar" 
+      data-sidebar-target="toggle" data-action="click->sidebar#toggleClose">
+  <div class="sidebar__container">
+    <div class="sidebar__inner">
+      <div class="sidebar__context">
+    
+        <button id="close-button" class="button" data-action="click->sidebar#toggleClose">
+          <%= Icon.new("close").call %>
+        </button>
+    
+        <ul>
+          <% if user_signed_in? %>
+            <%= sign_out_button("Sign out", destroy_user_session_path, "sign_out") %>
+          <% else %>
+            <%= sidebar_item("Sign in", new_user_session_path, "sign_in") %>
+          <% end %>
+          
+          <%= divider %> 
+          
+          <%#= sidebar_button(t("chats.new_chat"), new_chat_path, "send") %>           
+
+          <%#= divider %> 
+
+          <%# if current_user&.admin? %>
+            <%#= admin_sidebar_button([
+              { text: 'Dashboard', path: blazer_path }, 
+              { text: 'Mailchimp translator', path: new_mailchimp_translation_path },
+              { text: 'Users', path: users_path },
+              { text: 'Contacts', path: contacts_path },
+              { text: 'Sidekiq', path: sidekiq_web_path },
+              { text: 'Test Export users CSV', path: '/exports/user/create.csv' }
+            ]) %>
+            <%#= divider %>
+          <%# end %>
+          
+          <%# <li class="sidebar__item"> %>
+            <%#= render "shared/language_links" %>
+          <%# </li> %>
+          <% if user_signed_in? %>
+            <%#= user_profile_link(current_user) %>
+            <%= sidebar_item("Blog", user_posts_path(current_user), "book") %> 
+          <% end %>
+            
+          <%#= divider %> 
+                    
+          <%#= sidebar_item(t("pricing.pricing"), pricing_path, "dollar") %>
+          <%#= sidebar_item(t("pages.about.about").capitalize, about_path, "info_black") %>
+          <%#= sidebar_item(t("deepl_translations.multi_translator"), new_deepl_translation_path, "language") %>
+          <%#= sidebar_item(t("posts.blog"), posts_path, "book") %>
+          
+          <%#= divider %> 
+          
+          <%#= sidebar_button_turbo(t("contacts.feedback"), new_contact_path, "mail") %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>

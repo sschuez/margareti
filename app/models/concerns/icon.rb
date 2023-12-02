@@ -7,6 +7,7 @@ class Icon
     @icon = icon
     @icons = {
       trash: '<i class="fas fa-trash-alt"></i>',
+      book: '<i class="fab fa-readme"></i>',
       edit: '<i class="fas fa-edit"></i>',
       confirm: '<i class="bi bi-check-circle-fill"></i>',
       cancel: '<i class="bi bi-x-circle-fill"></i>',
@@ -15,8 +16,8 @@ class Icon
       hamburger: '<i class="fas fa-bars"></i>',
       close: '<i class="fas fa-times"></i>',
       close_lg: '<i class="bi bi-x-lg"></i>',
-      sign_out: '<i class="bi bi-box-arrow-right"></i>',
-      sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
+      sign_out: '<i class="fas fa-sign-out-alt"></i>',
+      sign_in: '<i class="fas fa-sign-in-alt"></i>',
       published: '<i class="fas fa-eye"  style="color: hsla(152, 65%, 31%, 1)"></i>',
       unpublished: '<i class="fas fa-eye-slash" style="color: hsla(27, 67%, 57%, 1)"></i>',
       translate: '<i class="bi bi-translate"></i>',
