@@ -11,9 +11,6 @@
     display: inline-block;
     margin-bottom: 1em;
 
-    &--form {
-
-    }
     
     &__edit {
       position: absolute;
@@ -30,7 +27,7 @@
     border-radius: var(--border-radius);
     
     &--form {
-      padding: 0.5rem !important;
+      padding: var(--space-xs) !important;
     }
     
     &__edit {

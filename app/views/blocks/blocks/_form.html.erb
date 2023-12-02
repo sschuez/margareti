@@ -4,7 +4,9 @@
   <%= simple_form_for([user, block].compact, html: { class: wrapper_class }) do |f| %>
     <%= form_error_notification(block) %>
     <div class="form__container">
-      <%= f.input :name, input_html: { data: { controller: "autofocus" } } %>
+      <%= f.input :name, 
+            input_html: { data: { controller: "autofocus" } },
+            wrapper_html: { class: "form__container__input--block-name" } %>
       <div class="form__container__actions">
         <%= link_to user_path(block.new_record? ? user : block.user),
             data: { turbo_frame: block.new_record? ? nested_dom_id(user, "blocks") : dom_id(block) }, 
