@@ -7,6 +7,14 @@ SimpleForm.setup do |config|
     b.use :input, class: "form__input", error_class: "form__input--invalid"
   end
 
+  # Custom wrapper for boolean inputs
+  config.wrappers :vertical_boolean, tag: 'div', class: 'form__group', error_class: 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :readonly
+    b.use :label_input, class: "form__checkbox"
+  end
+  
   # Default configuration
   config.generate_additional_classes_for = []
   config.default_wrapper                 = :default

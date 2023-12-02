@@ -5,8 +5,8 @@ export default class extends Controller {
   static targets = [ "toggle", "sub", "arrowIcon" ]
 
   connect() {
-    this.arrowDown = `<i class="bi bi-caret-down-fill" id="caret"></i>`
-    this.arrowLeft = `<i class="bi bi-caret-left-fill" id="caret"></i>`
+    this.arrowDown = `<i class="fas fa-caret-down"></i>`
+    this.arrowLeft = `<i class="fas fa-caret-up"></i>`
   
     this.getArrowIcons()
   }

@@ -7,6 +7,10 @@
     flex: 1;
   }
 
+  &__checkbox {
+    margin-right: var(--space-xs);
+  }
+
   &__input {
     display: block;
     width: 100%;
