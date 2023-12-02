@@ -4,11 +4,11 @@
   <%= render "users/attributes/bio", user: @user %>
 </div>
 
-<div class="display-center my-l">
+<div class="d-center my-l">
   <%= link_to "+ Add block", new_user_block_path(@user), data: { turbo_stream: true } %>
 </div>
 
-<%= turbo_frame_tag nested_dom_id(@user, "blocks"), data: { controller: "sortable" }, class: "blocks" do %>
+<%= turbo_frame_tag nested_dom_id(@user, "blocks"), data: { controller: "sortable", sortable_draggable_value: ".drag-item" }, class: "blocks" do %>
   <%= render "blocks/blocks/empty_state", user: @user %>
   <% @user.blocks.ordered.each do |block| %>
     <%= render "blocks/blocks/block", block: block %>

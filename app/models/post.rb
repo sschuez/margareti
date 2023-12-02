@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  acts_as_list add_new_at: :top, top_of_list: 0
+  # acts_as_list add_new_at: :top, top_of_list: 0, scope: :user
+  acts_as_list scope: :user
   
   validates :title, presence: true
   

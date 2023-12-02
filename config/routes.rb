@@ -25,10 +25,10 @@ Rails.application.routes.draw do
     end
 
     resources :blocks, only: [] do
-      member { put :order }
+      put :order, on: :member
       # ITEMS
       resources :items, except: [:index], shallow: true do
-        member { put :order }
+        put :order, on: :member
       end
     end
     # ITEMS
@@ -36,11 +36,12 @@ Rails.application.routes.draw do
   end
 
   # BLOG
-  resources :posts do
-    patch :publish, on: :member
+  resources :users, only: [] do
+    resources :posts, shallow: true do
+      patch :publish, on: :member
+      put :order, on: :member
+    end
   end
-  resources :file_uploads, only: [:destroy]
-  resource :position, only: [:update]
 
   # FILE UPLOADS
   resources :file_uploads, only: [:destroy]

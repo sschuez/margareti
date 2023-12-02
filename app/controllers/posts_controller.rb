@@ -3,20 +3,23 @@ class PostsController < ApplicationController
 
   def index
     # @posts = policy_scope(Post).order(position: :asc)
-    @posts = Post.ordered.where(user: current_user)
+    @user = User.find(params[:user_id])
+    @posts = Post.ordered.where(user: @user)
 
     # @canonical_href = posts_url
   end
   
   def new
-    @post = current_user.posts.build
+    @user = User.find(params[:user_id])
+    @post = @user.posts.build
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.build(post_params)
 
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: 'Post created'
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +35,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       redirect_to post_path(@post)
-      flash[:notice] = "Post was successfully updated."
+      flash[:notice] = "Post updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,8 +45,8 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = "Post #{@post.title} was successfully destroyed." }
-      format.html { redirect_to posts_path, notice: "Post was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Post #{@post.title} destroyed" }
+      format.html { redirect_to user_posts_path(@post.user), notice: "Post destroyed" }
     end
   end
 
@@ -51,13 +54,20 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     @post.toggle!(:published)
+    state = @post.published? ? "published" : "unpublished"
 
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = "Post #{@post.title} was successfully #{state}." }
-      format.html { redirect_to post_path(@post), notice: "Post was successfully published." }
+      format.turbo_stream { flash.now[:notice] = "Post #{@post.title} #{state}" }
+      format.html { redirect_to post_path(@post), notice: "Post #{state}" }
     end
   end
 
+  def order
+    @post = Post.find(params[:id])
+    @post.insert_at(params[:new_position])
+    
+    head :no_content
+  end
 
   private
 

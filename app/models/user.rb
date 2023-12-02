@@ -18,6 +18,10 @@ class User < ApplicationRecord
     )
   end
 
+  def name
+    full_name.present? ? full_name : email_username
+  end
+  
   def email_username
     email.split('@').first
   end

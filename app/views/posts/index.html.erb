@@ -1,24 +1,15 @@
-<%= turbo_frame_tag "posts" do %>
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        
-        <% if @posts.any? %>
-          <div id="posts" data-controller="sortable">
-            <%= render @posts %>
-          </div>
-        <% else %>
-          <p>There are no posts yet.</p>
-        <% end %>
-
-        <%# if policy(@posts).create? %>
-          <div class="actions flex-end">
-            <%= link_to "New Post", new_post_path, target: "_top", class: "btn btn--dark" %>
-          </div>
-        <%# end %>
-        <br>
-        
-      </div>
+  <div class="container container--narrow">
+    <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
+    
+    <div class="header">
+      <h1><%= @user.name %>'s posts</h1>
+      <%= link_to "New post", new_user_post_path(@user), data: { turbo_frame: :top }, class: "btn btn--dark" %>
     </div>
+
+    <%= turbo_frame_tag "posts", data: { controller: "sortable", sortable_draggable_value: ".drag-item" } do %>        
+      <%= render "empty_state", user: @user %>
+      <%= render @posts %>
+    <% end %>
+    <br>    
+    <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
   </div>
-<% end %>

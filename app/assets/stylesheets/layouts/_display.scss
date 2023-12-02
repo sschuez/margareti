@@ -8,7 +8,11 @@
   justify-content: flex-end !important;
 }
 
-.display-center {
+.d-flex {
+  display: flex !important;
+}
+
+.d-center {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;

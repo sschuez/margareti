@@ -5,15 +5,17 @@ import { put } from "@rails/request.js"
 // Connects to data-controller="sortable"
 export default class extends Controller {
   static values = {
-    group: String
+    group: String,
+    draggable: String
   }
 
   connect() {
     Sortable.create(this.element, {
       onEnd: this.onEnd.bind(this),
-      filter: ".sortable-ignore-elements",
+      draggable: this.hasDraggableValue ? this.draggableValue : null,
       animation: 150,
       group: this.groupValue,      
+
       handle: ".sortable-handle",  // Drag handle selector within list items
       ghostClass: "sortable-ghost",  // Class name for the drop placeholder
       chosenClass: "sortable-chosen",  // Class name for the chosen item
@@ -23,11 +25,9 @@ export default class extends Controller {
 
   onEnd(event) {
     const url = event.item.dataset.sortableUrl
-    // The regex pattern to match /blocks/{number}/order
-    const regex = /^\/blocks\/\d+\/order$/
-    const isMatch = regex.test(url)
-    const index = isMatch ? event.newIndex : event.newIndex + 1
-
+    const modelNames = ["blocks"]
+    const regex = new RegExp(`^\/(${modelNames.join('|')})\/\\d+\/order$`)
+    const index = regex.test(url) ? event.newIndex : event.newIndex + 1
     var sortableBlockId = event.to.dataset.sortableBlockId
 
     put(url, { 

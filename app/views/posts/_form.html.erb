@@ -1,4 +1,4 @@
-<%= simple_form_for(post) do |f| %>
+<%= simple_form_for([user, post].compact) do |f| %>
   <%= form_error_notification(post) %>
 
   <div class="form-inputs">
@@ -20,7 +20,8 @@
           } %>
   </div>
 
-  <div class="form-actions flex-end">
+  <div class="justify-space-between">
+    <%= form_back_link(post, user) %>
     <%= f.button :submit, class: "btn btn--dark" %>
   </div>
 <% end %>

@@ -1,5 +1,9 @@
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.replace "post_#{@post.id}_publish_btn" do %>
-  <%= render "posts/publish_btn", post: @post %>
+<% positions = ["top", "middle", "bottom"] %>
+
+<% positions.each do |position| %>
+  <%= turbo_stream.replace "post_#{@post.id}_publish_btn_#{position}" do %>
+    <%= render "posts/publish_btn", post: @post, position: position %>
+  <% end %>
 <% end %>

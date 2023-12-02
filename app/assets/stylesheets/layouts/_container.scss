@@ -18,4 +18,10 @@
       max-width: 60rem;
     }
   }
+
+  &--more-narrow {
+    @include media(tabletAndUp) {
+      max-width: 40rem;
+    }
+  }
 }

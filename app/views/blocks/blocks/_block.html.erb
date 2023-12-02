@@ -2,7 +2,8 @@
     data: { 
       controller: "accordion-all", 
       sortable_url: order_block_path(block) 
-    } do %>
+    },
+    class: "drag-item" do %>
   <div class="block__item">
     <%= turbo_frame_tag nested_dom_id(block, "edit") do %>
       <div class="block__title">
@@ -17,7 +18,8 @@
         data: { 
           controller: "sortable", 
           sortable_block_id: block.id, 
-          sortable_group_value: "items" 
+          sortable_group_value: "items",
+          sortable_draggable_value: ".drag-item",
         }, 
         class: "block__content" do %>
       <% block.items.ordered.each do |item| %>    
