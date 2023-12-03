@@ -33,14 +33,14 @@ export default class extends Controller {
     if (start >= 0 && start == end) {
       // do cursor position actions, example:
       console.log('Cursor Position: ' + start);
-      this.inputTarget.setRangeText(" [](https://)", start, end, "end")
+      this.inputTarget.setRangeText(" [](https://www.)", start, end, "end")
     } else if (start >= 0) {
       // do ranged select actions, example:
       console.log('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
       // Get the selected text
       var selectedText = this.inputTarget.value.substring(start, end);
       // Replace the selected text with the URL format
-      this.inputTarget.setRangeText("[" + selectedText + "](https://)", start, end, "end")
+      this.inputTarget.setRangeText("[" + selectedText + "](https://www.)", start, end, "end")
     }
   }
 }
