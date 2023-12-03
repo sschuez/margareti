@@ -9,15 +9,43 @@ export default class extends Controller {
   }
 
   connect() {
+    // Define a custom toolbar button for image uploads
+    const uploadButton = {
+      name: "upload-image",
+      action: () => {
+        this.triggerUploadDialog()
+      },
+      className: "fa fa-upload",
+      title: "Upload Image",
+    };
+
+    // Include the upload button in your toolbar configuration
+    const toolbar = this.toolbarValue ? [...this.toolbarValue, uploadButton] : [uploadButton];
+    this.allowDropFileTypes = ["image/jpeg", "image/png", "image/gif"]
     this.easyMDE = new easyMDE({
       element: this.element,
-      allowDropFileTypes: ["image/jpeg", "image/png", "image/gif"],
-      toolbar: this.toolbarValue
+      allowDropFileTypes: this.allowDropFileTypes,
+      toolbar: toolbar
     })
     this.dropUpload()
     this.pasteUpload()
   }
   
+  triggerUploadDialog() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = this.allowDropFileTypes.join(',');
+    fileInput.style.display = 'none'; // Hide the file input
+
+    fileInput.addEventListener('change', (event) => {
+      this.uploadFiles(event.target.files);
+      fileInput.remove(); // Clean up the file input from the DOM
+    });
+
+    document.body.appendChild(fileInput); // It needs to be in the DOM to be clickable
+    fileInput.click(); // Trigger the file dialog
+  }
+
   dropUpload() {
     this.easyMDE.codemirror.on("drop", (instance, event) => {
       event.preventDefault()
