@@ -2,7 +2,7 @@
   <div data-controller="accordion" class="block__item">
     <%= turbo_frame_tag nested_dom_id(item, "edit") do %>
       <div class="block__item__title">
-        <%= item.name %>
+        <%= markdown_links_to_html item.name %>
         <%= actions_for(item) %>
         <%= accordion_toggle_btn(item) %>
       </div>
