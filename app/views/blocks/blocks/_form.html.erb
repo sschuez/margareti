@@ -3,7 +3,7 @@
 <%= turbo_frame_tag nested_dom_id(block, "form") do %>
   <%= simple_form_for([user, block].compact, html: { class: wrapper_class }) do |f| %>
     <%= form_error_notification(block) %>
-    <div class="form__container" data-controller="link">
+    <div class="form__container" data-controller="add-url">
       <%= f.input :name, 
             input_html: { data: { controller: "autofocus", link_target: "input" } },
             wrapper_html: { class: "form__container__input--block-name" } %>

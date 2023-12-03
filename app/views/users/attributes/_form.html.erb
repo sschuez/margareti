@@ -1,7 +1,7 @@
 <% wrapper_class = "profile__#{attribute} profile__#{attribute}--form" %>
 <%= simple_form_for user, url: user_attributes_path(user, attribute: attribute), html: { class: wrapper_class },  method: :patch do |f| %>
   <%= form_error_notification(user) %>
-  <div class="form__container" data-controller="link"> 
+  <div class="form__container" data-controller="add-url"> 
     <%= f.input attribute.to_sym,
           input_html: { autocomplete: attribute, 
                         data: { controller: "textarea-autogrow autofocus", link_target: "input" } },
