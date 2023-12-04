@@ -17,6 +17,14 @@
   <% end %>
 <% end %>
 
-<div class="profile">
+<div class="profile-container">
   <%= render "shared/toggle_actions_btn", position: 3 %>
 </div>
+
+<% if @user.posts.any? %>
+  <div class="container container--more-narrow">
+    <div class="container-divider"></div>
+    <h2><%= @user.name %>'s latest posts</h2>
+    <%= turbo_frame_tag "posts", src: user_posts_path(@user), loading: "lazy" %>
+  </div>
+<% end %>
