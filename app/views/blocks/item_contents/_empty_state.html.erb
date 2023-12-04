@@ -4,5 +4,10 @@
   </p>
 
   <%= link_to "Add some content", 
-      edit_item_content_path(item) %>
+      edit_item_content_path(item), 
+      class: "action-btn", 
+      data: {
+        controller: "action-authorisations",
+        action_authorisations_target: "user"
+      } %>
 </div>

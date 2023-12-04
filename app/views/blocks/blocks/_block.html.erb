@@ -1,6 +1,7 @@
 <%= turbo_frame_tag block, 
     data: { 
-      controller: "accordion-all", 
+      controller: "accordion-all action-authorisations",
+      has_expandable_content: block.items_have_content?,
       sortable_url: order_block_path(block) 
     },
     class: "drag-item" do %>
@@ -9,7 +10,10 @@
       <div class="block__title">
         <h2><%= markdown_links_to_html block.name %></h2>
         <%= actions_for(block) %>
-        <div class="button" data-action="click->accordion-all#toggleBlock" data-accordion-all-target="icon">
+        <div class="button" 
+            data-action="click->accordion-all#toggleBlock" 
+            data-accordion-all-target="icon"
+            data-action-authorisations-target="accordion">
           <%= Icon.call("plus") %>
         </div>
       </div>

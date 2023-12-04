@@ -2,7 +2,7 @@
   <div class="profile__full_name">
     <% if user.full_name.present? %>
       <h1><%= markdown_links_to_html user.full_name %></h1>
-      <%= link_to edit_user_attributes_path(user, attribute: "full_name"), class: "profile__full_name__edit" do %>
+      <%= link_to edit_user_attributes_path(user, attribute: "full_name"), data: { controller: "action-authorisations", action_authorisations_target: "user" }, class: "profile__full_name__edit action-btn" do %>
         <%= Icon.call("edit") %>
       <% end %>
     <% else %>

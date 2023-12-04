@@ -6,41 +6,40 @@ export default class extends Controller {
 
   connect() {
     this.state = "closed"
+
+    if (this.element.dataset.hasExpandableContent === "false") {
+      this.iconTarget.classList.add("visually-hidden")
+    }
   }
   
   toggleBlock() {
     const accordionControllers = this.application.controllers.filter(controller => {
-      return controller.identifier === "accordion" && this.element.contains(controller.element);
-    });
+      return controller.identifier === "accordion" &&  
+                                        this.element.contains(controller.element) && 
+                                          controller.iconTargets.length > 0 &&
+                                            controller.hasExpandableContent
+    })
 
     this.toggle(accordionControllers)
   }
-
-  // toggleAll() {
-  //   const accordionControllers = this.application.controllers.filter(controller => {
-  //     return controller.identifier === "accordion"
-  //   });
-
-  //   this.toggle(accordionControllers)
-  // }
   
   toggle(scope) {
     this.setState()
     
     // Check if any accordion is closed
-    const anyClosed = scope.some(controller => controller.state === "closed");
+    const anyClosed = scope.some(controller => controller.state === "closed")
 
     // If any accordion is closed, open all. Otherwise, close all.
     scope.forEach(controller => {
       if (anyClosed && controller.state === "closed") {
-        controller.toggle();
+        controller.toggle()
       } else if (!anyClosed && controller.state === "open") {
-        controller.toggle();
+        controller.toggle()
       }
     });
 
     // Update the state of the overarching controller
-    this.state = anyClosed ? "open" : "closed";
+    this.state = anyClosed ? "open" : "closed"
   }
 
   setState() {
