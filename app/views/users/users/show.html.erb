@@ -25,6 +25,8 @@
   <div class="container container--more-narrow">
     <div class="container-divider"></div>
     <h2><%= @user.name %>'s latest posts</h2>
-    <%= turbo_frame_tag "posts", src: user_posts_path(@user), loading: "lazy" %>
+    <%= turbo_frame_tag "posts", src: user_posts_path(@user), loading: "lazy" do %>
+      <%= render "shared/spinner" %>
+    <% end %>
   </div>
 <% end %>
