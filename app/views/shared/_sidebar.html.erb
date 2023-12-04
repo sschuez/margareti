@@ -15,7 +15,7 @@
             <%= sidebar_item("Sign in", new_user_session_path, "sign_in") %>
           <% end %>
           
-          <%= divider %> 
+          <%#= divider %> 
           
           <%#= sidebar_button(t("chats.new_chat"), new_chat_path, "send") %>           
 
@@ -37,6 +37,7 @@
             <%#= render "shared/language_links" %>
           <%# </li> %>
           <% if user_signed_in? %>
+            <%= divider %> 
             <%#= user_profile_link(current_user) %>
             <%= sidebar_item("Blog", user_posts_path(current_user), "book") %> 
           <% end %>

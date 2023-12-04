@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_one_attached  :photo
 
+  # For the name function, to use markdown_helpers
+  include MarkdownHelper
+  include ActionView::Helpers
+
   def broadcast_photo_destroyed
     broadcast_replace_to(
       "photo_user_#{self.id}",
@@ -19,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def name
-    full_name.present? ? full_name : email_username
+    full_name.present? ? markdown_links_to_html(full_name) : email_username
   end
   
   def email_username
