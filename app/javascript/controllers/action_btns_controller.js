@@ -30,7 +30,7 @@ export default class extends Controller {
 
   updateCheckboxFromMeta() {
     const showActionBtns = this.stateFromMeta() === 'true'
-    // this.checkboxTarget.checked = showActionBtns
+    this.checkboxTarget.checked = showActionBtns
     this.application.controllers
       .filter(controller => controller.identifier === this.identifier)
       .forEach(controller => controller.checkboxTarget.checked = showActionBtns)
