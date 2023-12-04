@@ -1,7 +1,12 @@
 .toggle-wrapper {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+
+  .form-check-label {
+    // margin-top: 1rem;
+    margin-top: 3px;
+    margin-left: 0.5rem;
+  }
 }
 
 .toggle {
