@@ -22,7 +22,6 @@ export default class extends Controller {
 
     if (start >= 0 && start == end) {
       // Nothing selected, insert at cursor
-      console.log('Cursor Position: ' + start);
       this.inputTarget.setRangeText(" [](https://www.)", start, end, "end")
       
       // Move cursor to the middle of []
@@ -31,7 +30,6 @@ export default class extends Controller {
       this.inputTarget.focus(); // Focus the input after setting the cursor position
     } else if (start >= 0) {
       // Text selected, replace with URL
-      console.log('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
       var selectedText = this.inputTarget.value.substring(start, end);
       this.inputTarget.setRangeText("[" + selectedText + "](https://www.)", start, end, "end")
 
