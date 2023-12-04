@@ -4,7 +4,7 @@
   <div class="form__container" data-controller="add-url"> 
     <%= f.input attribute.to_sym,
           input_html: { autocomplete: attribute, 
-                        data: { controller: "textarea-autogrow autofocus", link_target: "input" } },
+                        data: { controller: "textarea-autogrow autofocus", add_url_target: "input" } },
           wrapper_html: { class: "form__container__input--#{attribute}" } %>
     <div class="form__container__actions">
       <%= link_to user_path(user), class: "btn btn--light btn--emoji" do %>

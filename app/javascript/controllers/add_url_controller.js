@@ -6,20 +6,11 @@ export default class extends Controller {
   connect() {
     this.element.classList.add("input-link")
     this.linkBtn = `
-    <button data-action="click->link#addUrl" class="button input-link__btn">
+    <div data-action="click->add-url#addUrl" class="button input-link__btn">
       <i class="fas fa-link"></i>
-    </button>
+    </div>
     `
     this.element.insertAdjacentHTML("afterbegin", this.linkBtn)
-    this.preventEnter()
-  }
-
-  preventEnter() {
-    this.inputTarget.addEventListener("keydown", function(e) {
-      if (e.keyCode === 13 || e.key === "Enter") {
-        e.preventDefault()
-      }
-    })
   }
 
   addUrl() {
@@ -30,16 +21,24 @@ export default class extends Controller {
         diff = end - start
 
     if (start >= 0 && start == end) {
-      // do cursor position actions, example:
+      // Nothing selected, insert at cursor
       console.log('Cursor Position: ' + start);
       this.inputTarget.setRangeText(" [](https://www.)", start, end, "end")
+      
+      // Move cursor to the middle of []
+      let newPos = start + 2; // 1 is the position right after the opening bracket [
+      this.inputTarget.setSelectionRange(newPos, newPos);
+      this.inputTarget.focus(); // Focus the input after setting the cursor position
     } else if (start >= 0) {
-      // do ranged select actions, example:
+      // Text selected, replace with URL
       console.log('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
-      // Get the selected text
       var selectedText = this.inputTarget.value.substring(start, end);
-      // Replace the selected text with the URL format
       this.inputTarget.setRangeText("[" + selectedText + "](https://www.)", start, end, "end")
+
+      // Move cursor to after www.
+      let newPos = start + selectedText.length + 15; // 15 is the length of ](https://www.
+      this.inputTarget.setSelectionRange(newPos, newPos);
+      this.inputTarget.focus(); // Focus the input after setting the cursor position
     }
   }
 }

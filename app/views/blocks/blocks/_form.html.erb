@@ -5,7 +5,7 @@
     <%= form_error_notification(block) %>
     <div class="form__container" data-controller="add-url">
       <%= f.input :name, 
-            input_html: { data: { controller: "autofocus", link_target: "input" } },
+            input_html: { data: { controller: "autofocus", add_url_target: "input" } },
             wrapper_html: { class: "form__container__input--block-name" } %>
       <div class="form__container__actions">
         <%= link_to user_path(block.new_record? ? user : block.user),
