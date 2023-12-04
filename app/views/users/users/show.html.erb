@@ -4,12 +4,11 @@
   <%= render "users/attributes/bio", user: @user %>
 </div>
 
-<div data-controller="action-btns">
+<div class="toggle-wrapper my-l" data-controller="action-btns">
   <label class="visible-label" for="action-btns">Action buttons</label>
   <input data-action-btns-target="checkbox" class="toggle" type="checkbox" value="0" id="action-btns" data-action="change->action-btns#toggleActionBtns">
   <label class="form-check-label" for="action-btns"></label>
 </div>
-
 
 <div class="d-center my-l" data-controller="action-authorisations" data-action-authorisations-target="user">
   <%= link_to "+ Add block", new_user_block_path(@user), data: { turbo_stream: true }, class: "action-btn" %>

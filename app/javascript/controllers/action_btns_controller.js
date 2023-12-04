@@ -1,24 +1,51 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static targets = ["checkbox"]
+
   connect() {
-    this.state = "hidden"
+    this.updateCheckboxFromMeta();
   }
 
   toggleActionBtns(){
-    this.state = this.state === "hidden" ? "visible" : "hidden"
+    const newState = this.stateFromMeta() === 'true' ? 'false' : 'true';
+    this.setStateInMeta('show-action-btns', newState);
+    this.updateCheckboxFromMeta();
+    this.toggleActionButtons();
+  }
 
-    // All action btns, identified via data-controller="action-authorisations"
-    const actionBtns = this.application.controllers.filter(controller => {
+  toggleActionButtons() {
+    const actionBtnsControllers = this.application.controllers.filter(controller => {
       return controller.identifier === "action-authorisations"
-    })
+    });
 
-    actionBtns.forEach(controller => {
-      if (this.state === "hidden") {
-        controller.hideAuthorizedActions()
-      } else if (this.state === "visible") {
-        controller.showAuthorizedActions()
+    actionBtnsControllers.forEach(controller => {
+      if (this.stateFromMeta() === 'true') {
+        controller.showAuthorizedActions();
+      } else {
+        controller.hideAuthorizedActions();
       }
-    })
+    });
+  }
+
+  updateCheckboxFromMeta() {
+    const showActionBtns = this.stateFromMeta() === 'true';
+    this.checkboxTarget.checked = showActionBtns;
+  }
+
+  stateFromMeta() {
+    return this.contentFromMeta('show-action-btns');
+  }
+
+  contentFromMeta(metaName) {
+    const meta = document.querySelector(`meta[name="${metaName}"]`)
+    return meta ? meta.content : null
+  }
+
+  setStateInMeta(metaName, value) {
+    const meta = document.querySelector(`meta[name="${metaName}"]`)
+    if (meta) {
+      meta.content = value;
+    }
   }
 }

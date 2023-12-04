@@ -7,10 +7,6 @@ export default class extends Controller {
   connect() {
     this.state = "closed"
     this.hasExpandableContent = this.element.dataset.hasExpandableContent === "true"
-    
-    // if (!this.hasExpandableContent) {
-      // this.iconTarget.classList.add("visually-hidden")
-    // }
   }
 
   get state() {
