@@ -49,12 +49,16 @@ export default class extends Controller {
   saveContent() {
     const content = this.easyMDE.value()
 
-    put(this.updateUrlValue, {
-      responseKind: "turbo-stream",
-      body: JSON.stringify({
-        content: content
+    if (this.updateUrlValue) {
+      put(this.updateUrlValue, {
+        responseKind: "turbo-stream",
+        body: JSON.stringify({
+          content: content
+        })
       })
-    })
+    } else {
+      alert("Please first create (save below) this record before you can use the quick-save function")
+    }
   }
   
   addSaveHotkey() {
