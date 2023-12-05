@@ -28,7 +28,8 @@ export default class extends Controller {
         this.saveContent();
       },
       className: "fa fa-save",
-      title: "Save Content",
+      title: "Save Content (Cmd/Ctrl+S)",
+      hotkey: 'Cmd-S'
     }
 
     // Include the save button in your toolbar configuration
@@ -40,6 +41,7 @@ export default class extends Controller {
       allowDropFileTypes: this.allowDropFileTypes,
       toolbar: toolbar
     })
+    this.addSaveHotkey();
     this.dropUpload()
     this.pasteUpload()
   }
@@ -53,6 +55,21 @@ export default class extends Controller {
         content: content
       })
     })
+  }
+  
+  addSaveHotkey() {
+    this.easyMDE.codemirror.setOption('extraKeys', {
+      'Cmd-S': (cm) => {
+        this.saveContent();
+        // Prevent the default "Save" action
+        return false;
+      },
+      'Ctrl-S': (cm) => {
+        this.saveContent();
+        // Prevent the default "Save" action
+        return false;
+      }
+    });
   }
   
   triggerUploadDialog() {
