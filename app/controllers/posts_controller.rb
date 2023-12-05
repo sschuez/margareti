@@ -3,9 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @posts = policy_scope(Post).order(position: :asc)
     @user = User.find(params[:user_id])
-    @posts = Post.ordered.where(user: @user)
+    @posts = policy_scope(Post).ordered.where(user: @user)
 
     # @canonical_href = posts_url
   end
@@ -13,11 +12,13 @@ class PostsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @post = @user.posts.build
+    authorize @post
   end
 
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.build(post_params)
+    authorize @post
 
     if @post.save
       redirect_to post_path(@post), notice: 'Post created'
@@ -28,12 +29,16 @@ class PostsController < ApplicationController
 
   def show
     # @canonical_href = post_url(@post)
+    authorize @post
   end
 
   def edit
+    authorize @post
   end
 
   def update
+    authorize @post
+
     if @post.update(post_params)
       redirect_to post_path(@post)
       flash[:notice] = "Post updated."
@@ -43,6 +48,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
+
     @post.destroy
 
     respond_to do |format|
@@ -53,6 +60,7 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:id])
+    authorize @post, :update?
 
     @post.toggle!(:published)
     state = @post.published? ? "published" : "unpublished"
@@ -65,6 +73,8 @@ class PostsController < ApplicationController
 
   def order
     @post = Post.find(params[:id])
+    authorize @post, :update?
+
     @post.insert_at(params[:new_position])
     
     head :no_content
@@ -72,6 +82,7 @@ class PostsController < ApplicationController
 
   def save_content
     @post = Post.find(params[:id])
+    authorize @post, :update?
     
     if @post.update(body: params[:content])
       respond_to do |format|

@@ -2,11 +2,13 @@ class Users::AttributesController < ApplicationController
   def edit
     @attribute = params[:attribute]
     @user = User.find(params[:user_id])
+    authorize @user
   end
 
   def update
     @attribute = params[:attribute]
     @user = User.find(params[:user_id])
+    authorize @user
     
     case @attribute
     when "full_name"

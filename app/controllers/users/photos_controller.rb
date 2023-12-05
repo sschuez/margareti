@@ -1,10 +1,12 @@
 class Users::PhotosController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
+    authorize @user
   end
 
   def update
     @user = User.find(params[:user_id])
+    authorize @user
     
     # Check if the `photo` param looks like a signed ID (contains Base64 data and a signature)
     if params.dig(:user, :photo) && 

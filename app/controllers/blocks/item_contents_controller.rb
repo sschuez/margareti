@@ -3,14 +3,17 @@ class Blocks::ItemContentsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
   end
 
   def edit
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
   end
 
   def update
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
 
     if @item.update(item_params)
       respond_to do |format|
@@ -24,6 +27,7 @@ class Blocks::ItemContentsController < ApplicationController
 
   def save_content
     @item = Item.find(params[:id])
+    authorize @item, :update?, policy_class: UserPolicy
 
     if @item.update(content: params[:content])
       respond_to do |format|

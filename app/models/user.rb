@@ -26,6 +26,11 @@ class User < ApplicationRecord
     full_name.present? ? markdown_links_to_html(full_name) : email_username
   end
   
+  # For pundit
+  def user
+    self
+  end
+
   def email_username
     email.split('@').first
   end

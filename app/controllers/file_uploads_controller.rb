@@ -1,4 +1,6 @@
 class FileUploadsController < ApplicationController
+  skip_after_action :verify_authorized, only: :destroy
+  
   def destroy
     return unless params[:id]
     
