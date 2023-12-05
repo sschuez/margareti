@@ -82,8 +82,16 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: margareti_production
+#   username: margareti
+#   password: <%= ENV["MARGARETI_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  database: margareti_production
-  username: margareti
-  password: <%= ENV["MARGARETI_DATABASE_PASSWORD"] %>
+  host: '<%= ENV["DB_HOST"] %>'
+  database: '<%= ENV["POSTGRES_DB"] %>'
+  username: '<%= ENV["POSTGRES_USER"] %>'
+  password: '<%= ENV["POSTGRES_PASSWORD"] %>'
+  port: 5428

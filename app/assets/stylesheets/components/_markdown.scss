@@ -91,7 +91,8 @@
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 1em auto;
+    margin-top: 1em;
+    border-radius: var(--border-radius);
   }
 
   a {

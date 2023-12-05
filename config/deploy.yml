@@ -1,0 +1,56 @@
+---
+service: margareti 
+image: pschuez/margareti
+servers:
+  web:
+    hosts:
+      - 168.119.127.165
+    options: 
+      "add-host": host.docker.internal:host-gateway
+    labels:
+      traefik.http.routers.margareti.entrypoints: websecure
+      traefik.http.routers.margareti.rule: "Host(`margareti.com`) || Host(`www.margareti.com`)"
+      traefik.http.routers.margareti.tls.certresolver: letsencrypt
+      traefik.http.routers.margareti.tls.domains[0].main: margareti.com
+      traefik.http.routers.margareti.tls.domains[0].sans: www.margareti.com
+  worker:
+    hosts:
+      - 168.119.127.165
+    cmd: bundle exec sidekiq
+registry:
+  username: pschuez
+  password:
+  - KAMAL_REGISTRY_PASSWORD
+env:
+  clear:
+    DB_HOST: 168.119.127.165
+    POSTGRES_USER: margareti_user
+    POSTGRES_DB: margareti_production
+    redis: 168.119.127.165
+  secret:
+  - RAILS_MASTER_KEY
+  - POSTGRES_PASSWORD
+  - REDIS_URL
+ssh:
+  user: root
+accessories:
+  db:
+    image: postgres:16
+    host: 168.119.127.165
+    port: 5428:5432
+    env:
+      clear:
+        POSTGRES_USER: margareti_user
+        POSTGRES_DB: margareti_production
+      secret:
+      - POSTGRES_PASSWORD
+    directories:
+    - data:/var/lib/postgresql/data
+  redis:
+    image: redis:7.0
+    roles:
+      - web
+      - worker
+    port: 6383:6379
+    directories:
+    - data:/data

@@ -58,19 +58,17 @@ export default class extends Controller {
   }
   
   addSaveHotkey() {
-    this.easyMDE.codemirror.setOption('extraKeys', {
-      'Cmd-S': (cm) => {
-        this.saveContent();
-        // Prevent the default "Save" action
-        return false;
-      },
-      'Ctrl-S': (cm) => {
-        this.saveContent();
-        // Prevent the default "Save" action
-        return false;
-      }
-    });
+    const extraKeys = this.easyMDE.codemirror.getOption('extraKeys') || {};
+
+    // Extend the existing extraKeys with your custom hotkey
+    extraKeys['Cmd-S'] = extraKeys['Ctrl-S'] = (cm) => {
+      this.saveContent();
+      return false; // Prevent the default "Save" action
+    };
+
+    this.easyMDE.codemirror.setOption('extraKeys', extraKeys);
   }
+
   
   triggerUploadDialog() {
     const fileInput = document.createElement('input')
