@@ -1,4 +1,4 @@
 <meta name="current-person-id" content="<%= current_user ? current_user.id : '' %>">
 <meta name="current-person-admin" content="<%= current_user ? current_user.admin : '' %>">
 <meta name="current-person-user" content="<%= @user == current_user %>">
-<meta name="show-action-btns" content="false">
+<meta name="show-action-btns" content="<%= @user == current_user %>">
