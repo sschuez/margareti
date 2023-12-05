@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       end
     end
     # ITEMS
-    resources :item_contents, only: [:show, :edit, :update]
+    resources :item_contents, only: [:show, :edit, :update] do
+      put :save_content, on: :member
+    end
   end
 
   # BLOG
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
     resources :posts, shallow: true do
       patch :publish, on: :member
       put :order, on: :member
+      put :save_content, on: :member
     end
   end
 

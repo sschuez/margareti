@@ -5,9 +5,10 @@
     <%= f.input :content, 
           input_html: { 
             data: { 
-              controller: "autofocus markdown-upload",
-              markdown_upload_url_value: rails_direct_uploads_url,
-              markdown_upload_toolbar_value: [ 
+              controller: "autofocus markdown-editor",
+              markdown_editor_update_url_value: save_content_item_content_path(item),
+              markdown_editor_url_value: rails_direct_uploads_url,
+              markdown_editor_toolbar_value: [ 
                 "bold", "italic", "heading-3", "quote", "unordered-list", "ordered-list", "link", "preview"
               ]
             }

@@ -70,6 +70,19 @@ class PostsController < ApplicationController
     head :no_content
   end
 
+  def save_content
+    @post = Post.find(params[:id])
+    
+    if @post.update(body: params[:content])
+      respond_to do |format|
+        format.turbo_stream { flash.now[:notice] = "Post content saved" }
+        format.html { redirect_to edit_post_path(@post), notice: "Post content saved" }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_post

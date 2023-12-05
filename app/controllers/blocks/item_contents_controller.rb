@@ -22,6 +22,18 @@ class Blocks::ItemContentsController < ApplicationController
     end
   end
 
+  def save_content
+    @item = Item.find(params[:id])
+
+    if @item.update(content: params[:content])
+      respond_to do |format|
+        format.turbo_stream { flash.now[:notice] = "Item content saved" }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
   private
 
   def item_params

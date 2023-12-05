@@ -1,10 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 import { DirectUpload } from "@rails/activestorage"
+import { put } from "@rails/request.js"
 import easyMDE from "easymde"
 
 export default class extends Controller {
   static values = { 
     url: String,
+    updateUrl: String,
     toolbar: Array
   }
 
@@ -17,10 +19,21 @@ export default class extends Controller {
       },
       className: "fa fa-upload",
       title: "Upload Image",
-    };
+    }
 
-    // Include the upload button in your toolbar configuration
-    const toolbar = this.toolbarValue ? [...this.toolbarValue, uploadButton] : [uploadButton];
+    // Define a custom toolbar button for saving the content
+    const saveButton = {
+      name: "save",
+      action: () => {
+        this.saveContent();
+      },
+      className: "fa fa-save",
+      title: "Save Content",
+    }
+
+    // Include the save button in your toolbar configuration
+    const toolbar = this.toolbarValue ? [...this.toolbarValue, uploadButton, saveButton] : [uploadButton, saveButton]
+    
     this.allowDropFileTypes = ["image/jpeg", "image/png", "image/gif"]
     this.easyMDE = new easyMDE({
       element: this.element,
@@ -30,20 +43,31 @@ export default class extends Controller {
     this.dropUpload()
     this.pasteUpload()
   }
+
+  saveContent() {
+    const content = this.easyMDE.value()
+
+    put(this.updateUrlValue, {
+      responseKind: "turbo-stream",
+      body: JSON.stringify({
+        content: content
+      })
+    })
+  }
   
   triggerUploadDialog() {
-    const fileInput = document.createElement('input');
+    const fileInput = document.createElement('input')
     fileInput.type = 'file';
-    fileInput.accept = this.allowDropFileTypes.join(',');
+    fileInput.accept = this.allowDropFileTypes.join(',')
     fileInput.style.display = 'none'; // Hide the file input
 
     fileInput.addEventListener('change', (event) => {
       this.uploadFiles(event.target.files);
-      fileInput.remove(); // Clean up the file input from the DOM
+      fileInput.remove() // Clean up the file input from the DOM
     });
 
     document.body.appendChild(fileInput); // It needs to be in the DOM to be clickable
-    fileInput.click(); // Trigger the file dialog
+    fileInput.click() // Trigger the file dialog
   }
 
   dropUpload() {
@@ -55,7 +79,7 @@ export default class extends Controller {
 
   pasteUpload() {
     this.easyMDE.codemirror.on("paste", (instance, event) => {
-      if (!event.clipboardData.files.length) return;
+      if (!event.clipboardData.files.length) return
       
       event.preventDefault()
       this.uploadFiles(event.clipboardData.files)
