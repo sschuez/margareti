@@ -4,10 +4,12 @@
   <%= link_to sanitize("&larr; Back to posts"), user_posts_path(@post.user) %>
   <div class="header">
     <h1><%= @post.title %></h1>
-    <div class="post__actions">
-      <%= show_actions_for(@post) %>
-      <%= render "posts/publish_btn", post: @post, position: "top" %>
-    </div>
+    <% if policy(@post).update? %>
+      <div class="post__actions">
+        <%= show_actions_for(@post) %>
+        <%= render "posts/publish_btn", post: @post, position: "top" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="post__subtitle">
@@ -25,9 +27,11 @@
   <br>
   <div class="justify-space-between">
     <%= link_to sanitize("&larr; Back to posts"), user_posts_path(@post.user) %>
-    <div class="post__actions">
-      <%= show_actions_for(@post) %>
-      <%= render "posts/publish_btn", post: @post, position: "bottom" %>
-    </div>
+    <% if policy(@post).update? %>
+      <div class="post__actions">
+        <%= show_actions_for(@post) %>
+        <%= render "posts/publish_btn", post: @post, position: "bottom" %>
+      </div>
+    <% end %>
   </div>
 </div> 

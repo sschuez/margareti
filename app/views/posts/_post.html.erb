@@ -10,10 +10,10 @@
         on <%= formatted_date post.created_at %>
     </p>
   </div>
-  <%# if policy(post).update? %>
+  <% if policy(post).update? %>
     <div class="post__actions">
       <%= index_actions_for(post) %>      
       <%= render "posts/publish_btn", post: post, position: "top" %>
     </div>
-  <%# end %>
+  <% end %>
 <% end %>
