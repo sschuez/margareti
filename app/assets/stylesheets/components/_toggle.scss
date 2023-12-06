@@ -1,9 +1,20 @@
 .toggle-wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end !important;
+  position: sticky !important;
+  top: 5rem;
+  z-index: 99;
+  width: 5rem;
+  margin-left: auto;
+
+  background: rgba(var(--color-white), 0.25); /* White background with 25% opacity */
+  border-radius: var(--border-radius); /* Rounded corners */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+  padding: 0.2rem; /* Optional: Add some padding inside the wrapper */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Optional: Add a subtle border */
 
   .form-check-label {
-    // margin-top: 1rem;
     margin-top: 3px;
     margin-left: 0.5rem;
   }

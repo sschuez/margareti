@@ -1,10 +1,10 @@
+<%= render "shared/toggle_actions_btn", user: @user %>
 <div class="profile">
   <%= render "users/photos/photo", user: @user %>
   <%= render "users/attributes/full_name", user: @user %>
-  <%= render "shared/toggle_actions_btn", user: @user, position: 1 %>
   <%= render "users/attributes/bio", user: @user %>
-  <%= render "shared/toggle_actions_btn", user: @user, position: 2 %>
 </div>
+  
 
 <div class="d-center my-m" data-controller="action-authorisations" data-action-authorisations-target="user">
   <%= link_to "+ Add block", new_user_block_path(@user), data: { turbo_stream: true }, class: "action-btn" %>
@@ -16,10 +16,6 @@
     <%= render "blocks/blocks/block", block: block %>
   <% end %>
 <% end %>
-
-<div class="profile-container">
-  <%= render "shared/toggle_actions_btn", user: @user, position: 3 %>
-</div>
 
 <% if @user.posts.any? %>
   <div class="container container--more-narrow">
