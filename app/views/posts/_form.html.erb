@@ -1,4 +1,8 @@
 <%= simple_form_for([user, post].compact) do |f| %>
+  <div class="flex-end my-m form-top-btn">
+    <%= f.button :submit, class: "btn btn--dark" %>
+  </div>
+  
   <%= form_error_notification(post) %>
 
   <div class="form-inputs">
