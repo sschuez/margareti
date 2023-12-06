@@ -17,7 +17,7 @@
   <% end %>
 <% end %>
 
-<% if @user.posts.any? %>
+<% if @user.posts.published.any? %>
   <div class="container container--more-narrow">
     <div class="container-divider"></div>
     <h2><%= @user.name %>'s latest posts</h2>

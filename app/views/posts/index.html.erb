@@ -3,7 +3,9 @@
     
     <div class="header">
       <h1><%= @user.name %>'s posts</h1>
-      <%= link_to "New post", new_user_post_path(@user), data: { turbo_frame: :top }, class: "btn btn--dark" %>
+      <% if policy(@user).update? %>
+        <%= link_to "New post", new_user_post_path(@user), data: { turbo_frame: :top }, class: "btn btn--dark" %>
+      <% end %>
     </div>
 
     <%= turbo_frame_tag "posts", data: { controller: "sortable", sortable_draggable_value: ".drag-item" } do %>        

@@ -3,8 +3,10 @@
     There are no posts yet.
   </p>
 
-  <%= link_to "Add post",
+  <% if policy(user).update? %>
+    <%= link_to "Add post",
               new_user_post_path(user),
               class: "btn btn--dark",
               target: "_top" %>
+  <% end %>
 </div>
