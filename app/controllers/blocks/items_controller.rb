@@ -2,7 +2,7 @@ class Blocks::ItemsController < ApplicationController
   def new
     @block = Block.find(params[:block_id])
     @item = Item.new
-    authorize @item, policy_class: UserPolicy
+    authorize @block, policy_class: UserPolicy
   end
 
   def create
