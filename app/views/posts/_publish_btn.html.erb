@@ -1,5 +1,7 @@
 <%= turbo_frame_tag "post_#{post.id}_publish_btn_#{position}" do %>
-  <%= button_to publish_post_path(post), class: "button", method: :patch do %>
+  <%= button_to publish_post_path(post), 
+      class: "button", 
+      method: :patch, data: {} do %>
     <%= post.published_icon %>
   <% end %>
 <% end %>
