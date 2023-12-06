@@ -2,12 +2,14 @@ class Blocks::ItemsController < ApplicationController
   def new
     @block = Block.find(params[:block_id])
     @item = Item.new
+    authorize @item, policy_class: UserPolicy
   end
 
   def create
     @block = Block.find(params[:block_id])
     @item = Item.new(item_params)
     @item.block = @block
+    authorize @item, policy_class: UserPolicy
 
     if @item.save
       respond_to do |format|
@@ -21,10 +23,12 @@ class Blocks::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
   end
 
   def update
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
     
     if @item.update(item_params)
       respond_to do |format|
@@ -38,6 +42,8 @@ class Blocks::ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    authorize @item, policy_class: UserPolicy
+    
     @item.destroy
     
     respond_to do |format|
@@ -48,6 +54,8 @@ class Blocks::ItemsController < ApplicationController
 
   def order
     @item = Item.find(params[:id])
+    authorize @item, :update?, policy_class: UserPolicy
+
     @item.update(block_id: params[:new_block_id])
     @item.insert_at(params[:new_position])
 
