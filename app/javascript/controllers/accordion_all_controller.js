@@ -9,14 +9,17 @@ export default class extends Controller {
   }
 
   toggleBlock() {
+    this.toggle(this.registerControllers())
+  }
+
+  registerControllers() {
     const accordionControllers = this.application.controllers.filter(controller => {
       return controller.identifier === "accordion" &&  
                                         this.element.contains(controller.element) && 
                                           controller.iconTargets.length > 0 &&
                                             controller.hasExpandableContent
     })
-
-    this.toggle(accordionControllers)
+    return accordionControllers
   }
 
   toggle(scope) {

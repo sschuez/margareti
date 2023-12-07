@@ -19,7 +19,7 @@
         class: "block__content" do %>
 
       <% block.items.ordered.each do |item| %>    
-        <%= render "blocks/items/item", item: item %>
+        <%= render "blocks/items/item", item: item, open_accordion: false %>
       <% end %>
       <%= render "blocks/blocks/add_item", block: block %>
 

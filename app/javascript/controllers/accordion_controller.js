@@ -2,11 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["dropdown", "icon"]
-  // static values = { hasExpandableContent: Boolean }
+  static values = { openAccordion: Boolean }
 
   connect() {
-    this.state = "closed"
-    // Required for external access to the value
+    this.state = this.openAccordionValue ? "open" : "closed"
+    if (this.state === "open") this.dropdownTarget.classList.remove("visually-hidden")
+    this.updateIcon();
     this.hasExpandableContent = this.element.dataset.hasExpandableContent === "true"
   }
 
