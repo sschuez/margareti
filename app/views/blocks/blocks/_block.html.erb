@@ -1,23 +1,14 @@
 <%= turbo_frame_tag block, 
     data: { 
-      controller: "accordion-all action-authorisations",
+      controller: "action-authorisations accordion-all",
       has_expandable_content: block.items_have_content?,
       sortable_url: order_block_path(block) 
     },
     class: "drag-item" do %>
+  
   <div class="block__item">
-    <%= turbo_frame_tag nested_dom_id(block, "edit") do %>
-      <div class="block__title">
-        <h2><%= markdown_links_to_html block.name %></h2>
-        <%= actions_for(block) %>
-        <div class="button" 
-            data-action="click->accordion-all#toggleBlock" 
-            data-accordion-all-target="icon"
-            data-action-authorisations-target="accordion">
-          <%= Icon.call("plus") %>
-        </div>
-      </div>
-    <% end %>
+    <%= render "blocks/blocks/block_edit", block: block %>
+
     <%= turbo_frame_tag nested_dom_id(block, "items"), 
         data: { 
           controller: "sortable", 
@@ -26,10 +17,12 @@
           sortable_draggable_value: ".drag-item",
         }, 
         class: "block__content" do %>
+
       <% block.items.ordered.each do |item| %>    
         <%= render "blocks/items/item", item: item %>
       <% end %>
       <%= render "blocks/blocks/add_item", block: block %>
+
     <% end %>
   </div>
 <% end %>

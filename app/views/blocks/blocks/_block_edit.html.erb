@@ -1,0 +1,14 @@
+<%= turbo_frame_tag nested_dom_id(block, "edit") do %>
+  <div class="block__title">
+    <h2><%= markdown_links_to_html block.name %></h2>
+    <%= actions_for(block) %>
+    <% if block.items_have_content? %>
+      <div class="button" 
+          data-action="click->accordion-all#toggleBlock" 
+          data-accordion-all-target="icon"
+          data-action-authorisations-target="accordion">
+        <%= Icon.call("plus") %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

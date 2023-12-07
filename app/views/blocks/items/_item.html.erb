@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(item), data: { sortable_url: order_item_path(item) }, class: "drag-item" do %>
   <div data-controller="accordion action-authorisations" 
-      data-has-expandable-content="<%= item.content.present? %>" 
+      data-has-expandable-content="<%= item.content.present? %>"
       class="block__item">
     
     <%= render "blocks/items/item_edit", item: item %>

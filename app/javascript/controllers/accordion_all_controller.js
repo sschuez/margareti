@@ -6,12 +6,8 @@ export default class extends Controller {
 
   connect() {
     this.state = "closed"
-
-    if (this.element.dataset.hasExpandableContent === "false") {
-      this.iconTarget.classList.add("visually-hidden")
-    }
   }
-  
+
   toggleBlock() {
     const accordionControllers = this.application.controllers.filter(controller => {
       return controller.identifier === "accordion" &&  
