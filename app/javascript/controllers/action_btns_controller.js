@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import MetaTagManager from "../helpers/meta_tag_manager"
 
 export default class extends Controller {
   static targets = ["checkbox"]
@@ -9,8 +8,8 @@ export default class extends Controller {
   }
 
   toggleActionBtns() {
-    const newState = MetaTagManager.getContent('show-action-btns') !== 'true';
-    MetaTagManager.setContent('show-action-btns', newState.toString());
+    const newState = window.MetaTagManager.getContent('show-action-btns') !== 'true';
+    window.MetaTagManager.setContent('show-action-btns', newState.toString());
     this.updateCheckboxFromMeta();
     this.toggleActionButtons(newState);
   }
@@ -26,7 +25,7 @@ export default class extends Controller {
   }
 
   updateCheckboxFromMeta() {
-    const showActionBtns = MetaTagManager.getContent('show-action-btns') === 'true'
+    const showActionBtns = window.MetaTagManager.getContent('show-action-btns') === 'true'
     this.checkboxTarget.checked = showActionBtns
   }
 }

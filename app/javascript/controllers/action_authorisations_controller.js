@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import MetaTagManager from "../helpers/meta_tag_manager"
 
 export default class extends Controller {
   static targets = ["user", "admin", "accordion"]
@@ -11,19 +10,19 @@ export default class extends Controller {
   }
   
   updateStateFromMeta() {
-    const showActionBtns = MetaTagManager.getContent('show-action-btns') === 'true';
+    const showActionBtns = window.MetaTagManager.getContent('show-action-btns') === 'true';
     showActionBtns ? this.showAuthorizedActions() : this.hideAuthorizedActions();
   }
   
   showAuthorizedActions() {
-    const isAdmin = MetaTagManager.getContent('current-person-admin') === 'true'
-    const isCurrentUser = MetaTagManager.getContent('current-person-user') === 'true'
+    const isAdmin = window.MetaTagManager.getContent('current-person-admin') === 'true'
+    const isCurrentUser = window.MetaTagManager.getContent('current-person-user') === 'true'
 
     this.updateVisibility(this.userTargets, isCurrentUser || isAdmin)
     this.updateVisibility(this.adminTargets, isAdmin)
     this.updateVisibility(this.accordionTargets, true || isCurrentUser || isAdmin)
 
-    MetaTagManager.setContent('show-action-btns', 'true');
+    window.MetaTagManager.setContent('show-action-btns', 'true');
   }
 
   hideAuthorizedActions() {
@@ -31,7 +30,7 @@ export default class extends Controller {
     this.updateVisibility(this.adminTargets, false)
     this.updateVisibility(this.accordionTargets, this.accordionHasExpandableContent)
 
-    MetaTagManager.setContent('show-action-btns', 'false');
+    window.MetaTagManager.setContent('show-action-btns', 'false');
   }
 
   updateVisibility(elements, shouldShow) {
