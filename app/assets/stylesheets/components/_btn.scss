@@ -18,6 +18,11 @@
     transition: filter 250ms, color 200ms;
   }
 
+  &--small {
+    padding: var(--space-xxxs) var(--space-xs);
+    font-size: var(--font-size-m);
+  }
+
   // Modifiers will go there
   &--primary {
     color: var(--color-white);

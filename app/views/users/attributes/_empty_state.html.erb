@@ -5,6 +5,7 @@
 
   <%= link_to "+ Add #{remove_underscore(attribute)}", 
         edit_user_attributes_path(user, attribute: attribute),
+        class: "btn btn--small btn--secondary",
         data: { 
           controller: "action-authorisations", 
           action_authorisations_target: "user" 

@@ -17,7 +17,7 @@ module PhotosHelper
   def photo_edit_link_for(user)
     description = user.photo.attached? ? "Edit" : "Add"
     turbo_frame_tag "photo-form" do
-      link_to "#{description == "Add" ? "+ " : ""}#{description} photo", edit_user_photo_path(user), data: { turbo_frame: "photo-form", controller: "action-authorisations", action_authorisations_target: "user" }
+      link_to "#{description == "Add" ? "+ " : ""}#{description} photo", edit_user_photo_path(user), data: { turbo_frame: "photo-form", controller: "action-authorisations", action_authorisations_target: "user" }, class: "btn btn--small btn--secondary"
     end
   end
 end

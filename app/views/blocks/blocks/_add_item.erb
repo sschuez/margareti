@@ -1,6 +1,7 @@
 <%= turbo_frame_tag nested_dom_id(block, Item.new), class: "sortable-ignore-elements" do %>
   <%= link_to "+ Add item", 
     new_block_item_path(block), 
+    class: "btn btn--secondary btn--small",
     data: { 
       turbo_frame: nested_dom_id(block, Item.new),
       controller: "action-authorisations",
