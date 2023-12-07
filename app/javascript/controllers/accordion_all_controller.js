@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import MetaTagManager from "../helpers/meta_tag_manager"
 
 // Connects to data-controller="accordion-all"
 export default class extends Controller {
