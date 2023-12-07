@@ -1,8 +1,8 @@
+// app/javascript/controllers/accordion_all_controller.js
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="accordion-all"
 export default class extends Controller {
-  static targets = [ "icon" ]
+  static targets = ["icon"]
 
   connect() {
     this.state = "closed"
@@ -18,14 +18,10 @@ export default class extends Controller {
 
     this.toggle(accordionControllers)
   }
-  
+
   toggle(scope) {
-    this.setState()
-    
-    // Check if any accordion is closed
     const anyClosed = scope.some(controller => controller.state === "closed")
 
-    // If any accordion is closed, open all. Otherwise, close all.
     scope.forEach(controller => {
       if (anyClosed && controller.state === "closed") {
         controller.toggle()
@@ -34,19 +30,13 @@ export default class extends Controller {
       }
     });
 
-    // Update the state of the overarching controller
     this.state = anyClosed ? "open" : "closed"
+    this.updateIcon();
   }
 
-  setState() {
+  updateIcon() {
     const iconClassList = this.iconTarget.firstElementChild.classList
-    
-    this.state = this.state === "closed" ? "open" : "closed"
-
-    if (this.state === "open") {
-      iconClassList.replace("fa-plus", "fa-minus")
-    } else {
-      iconClassList.replace("fa-minus", "fa-plus")
-    }
+    iconClassList.replace(this.state === "open" ? "fa-plus" : "fa-minus", 
+                          this.state === "open" ? "fa-minus" : "fa-plus")
   }
 }
