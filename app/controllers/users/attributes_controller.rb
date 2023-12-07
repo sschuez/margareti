@@ -27,6 +27,19 @@ class Users::AttributesController < ApplicationController
     end
   end
 
+  def save_content
+    @user = User.find(params[:user_id])
+    authorize @user, :update?
+
+    if @user.update(bio: params[:content])
+      respond_to do |format|
+        format.turbo_stream { flash.now[:notice] = "Profile content saved" }
+        format.html { redirect_to edit_user_path(@user), notice: "Profile content saved" }
+      end
+    end
+  end  
+
+
   private
 
   def user_params

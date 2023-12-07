@@ -3,7 +3,9 @@
     
     <% if user.bio.present? %>
       <div class="profile__bio">
-        <p><%= simple_format(markdown_links_to_html(user.bio)) %></p>
+        <div class="markdown-content">
+          <%= markdown user.bio %>
+        </div>
         <%= link_to edit_user_attributes_path(user, attribute: "bio"), data: { controller: "action-authorisations", action_authorisations_target: "user" }, class: "profile__bio__edit" do %>
           <%= Icon.call("edit") %>
         <% end %>

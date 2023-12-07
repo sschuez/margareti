@@ -1,7 +1,6 @@
 <%= simple_form_for item, url: item_content_path(item), method: :patch, html: { class: "form__container--item-content" } do |f| %>
   <%= form_error_notification(item) %>
   <div class="form__container form__container--no-flex">
-    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css"> 
     <%= f.input :content, 
           input_html: { 
             data: { 

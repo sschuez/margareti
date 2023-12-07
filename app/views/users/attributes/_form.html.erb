@@ -1,18 +1,50 @@
 <% wrapper_class = "profile__#{attribute} profile__#{attribute}--form" %>
 <%= simple_form_for user, url: user_attributes_path(user, attribute: attribute), html: { class: wrapper_class },  method: :patch do |f| %>
   <%= form_error_notification(user) %>
-  <div class="form__container" data-controller="add-url"> 
-    <%= f.input attribute.to_sym,
-          input_html: { autocomplete: attribute, 
-                        data: { controller: "textarea-autogrow autofocus", add_url_target: "input" } },
-          wrapper_html: { class: "form__container__input--#{attribute}" } %>
-    <div class="form__container__actions">
-      <%= link_to user_path(user), class: "btn btn--light btn--emoji" do %>
-        <%= Icon.call("cancel_emoji") %>
-      <% end %>
-      <%= button_tag(class: "btn btn--primary btn--emoji") do %>
-        <%= Icon.new("confirm_emoji").call %>
-      <% end %>
-    </div>
-  </div>  
+  
+  <% if attribute == "bio" %>
+  
+    <div class="form__container form__container--no-flex""> 
+      <%= f.input attribute.to_sym, 
+        input_html: { 
+          data: { 
+            controller: "autofocus markdown-editor",
+            markdown_editor_update_url_value: save_content_user_attributes_path(user),
+            markdown_editor_url_value: rails_direct_uploads_url,
+            markdown_editor_toolbar_value: [ 
+              "bold", "italic", "heading-3", "quote", "link", "preview"
+            ]
+          }
+        },
+        wrapper_html: { class: "form__container__input--item-content" } %>
+      <div class="form__container__actions flex-end">
+        <%= link_to user_path(user), class: "btn btn--light btn--emoji" do %>
+          <%= Icon.call("cancel_emoji") %>
+        <% end %>
+        <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+          <%= Icon.new("confirm_emoji").call %>
+        <% end %>
+      </div>
+    </div>  
+      
+  <% else %>
+    
+    <div class="form__container" data-controller="add-url"> 
+      <%= f.input attribute.to_sym,
+            input_html: { autocomplete: attribute, 
+                          data: { controller: "textarea-autogrow autofocus", add_url_target: "input" } },
+            wrapper_html: { class: "form__container__input--#{attribute}" } %>
+    
+      <div class="form__container__actions">
+        <%= link_to user_path(user), class: "btn btn--light btn--emoji" do %>
+          <%= Icon.call("cancel_emoji") %>
+        <% end %>
+        <%= button_tag(class: "btn btn--primary btn--emoji") do %>
+          <%= Icon.new("confirm_emoji").call %>
+        <% end %>
+      </div>
+    </div>  
+         
+  <% end %>
+
 <% end %>

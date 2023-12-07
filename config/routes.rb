@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # USERS NAMESPACE
   scope module: :users do
     resources :users, only: [:show, :index] do
-      resource :attributes, only: [:edit, :update]
+      resource :attributes, only: [:edit, :update] do
+        put :save_content, on: :member
+      end
       resource :photo, only: [ :edit, :update ]
     end
   end
