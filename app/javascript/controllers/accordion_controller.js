@@ -1,31 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="accordion"
 export default class extends Controller {
-  static targets = [ "dropdown", "icon" ]
+  static targets = ["dropdown", "icon"]
+  // static values = { hasExpandableContent: Boolean }
 
   connect() {
     this.state = "closed"
+    // Required for external access to the value
     this.hasExpandableContent = this.element.dataset.hasExpandableContent === "true"
-  }
-
-  get state() {
-    return this._state;
-  }
-
-  set state(value) {
-    this._state = value;
   }
 
   toggle(event) {
     this.dropdownTarget.classList.toggle("visually-hidden")
     this.state = this.state === "closed" ? "open" : "closed"
+    this.updateIcon();
+  }
+
+  updateIcon() {
     const iconClassList = this.iconTarget.firstElementChild.classList
-    
-    if (this.state === "open") {
-      iconClassList.replace("fa-plus", "fa-minus")
-    } else {
-      iconClassList.replace("fa-minus", "fa-plus")
-    }
+    iconClassList.replace(this.state === "open" ? "fa-plus" : "fa-minus", 
+                          this.state === "open" ? "fa-minus" : "fa-plus")
   }
 }
