@@ -20,4 +20,22 @@ module PhotosHelper
       link_to "#{description == "Add" ? "+ " : ""}#{description} photo", edit_user_photo_path(user), data: { turbo_frame: "photo-form", controller: "action-authorisations", action_authorisations_target: "user" }, class: "btn btn--small btn--secondary"
     end
   end
+
+  def item_photos(item)
+    return unless item.photos.attached?
+
+    content_tag :div, class: "block__item__photos" do
+      item.photos.each do |photo|
+        image_element = if Rails.env.production?
+                          cl_image_tag(photo.key, {
+                            crop: :fill, width: 150, height: 150, class: "block__item__photo"
+                          })
+                        else
+                          image_tag(photo.variant(resize_to_fill: [150, 150]), class: "block__item__photo")
+                        end
+        concat image_element
+      end
+    end
+  end
+
 end

@@ -27,7 +27,7 @@ module BlocksHelper
   end
 
   def item_content_edit_btn(item)
-    return unless item.content.present?
+    return unless item.has_content?
    
     content_tag :div, data: { controller: "action-authorisations", action_authorisations_target: "user" }, class: "block__item__content--edit flex-end" do
       link_to edit_item_content_path(item, data: { turbo_frame: nested_dom_id(item, "edit_content") }, class: "action-btn") do
@@ -35,5 +35,4 @@ module BlocksHelper
       end
     end
   end
-
 end

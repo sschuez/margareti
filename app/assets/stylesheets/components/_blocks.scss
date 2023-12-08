@@ -58,5 +58,19 @@
       transition: max-height 0.2s ease-out;
       border-radius: var(--border-radius);
     }
+
+    &__photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+      grid-gap: 10px; /* Adjust the gap size as needed */
+      margin-top: 0.5rem;
+    }
+
+    &__photo {
+      width: 100%;
+      height: auto;
+      object-fit: cover; /* This will make sure images cover the area nicely */
+      border-radius: var(--border-radius); /* Optional: for rounded corners */ 
+    }
   }
 }

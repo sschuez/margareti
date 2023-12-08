@@ -41,6 +41,6 @@ class Blocks::ItemContentsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:content)
+    params.require(:item).permit(:content, photos: [])
   end
 end

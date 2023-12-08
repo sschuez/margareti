@@ -23,5 +23,24 @@
         <%= Icon.new("confirm_emoji").call %>
       <% end %>
     </div>
+
+    <%= f.label :photos, class: "label mt-3" %>
+    <%= dropzone_controller_div(4) do %>
+      <% f.object.photos.each do |photo| %>
+        <% file_details = file_details_for(photo) %>
+        <%= f.hidden_field :photos, multiple: true, value: photo.signed_id, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], blob_id: file_details[:blob_id], "dropzone-target": "existingFile" } %>
+      <% end %>
+      <%= f.file_field :photos, direct_upload: true, multiple: true, 'data-dropzone-target': 'input' %>
+      <div data-dropzone-target="dropzoneMsg" class="dropzone-msg dz-message needsclick">
+        <h5 class="dropzone-msg-title">
+          Drag to upload or click to browse
+        </h5> 
+        <span class="dropzone-msg-desc text-sm small">
+          10 MB max size. 
+          <%# Allowed file types png, jpg. %>
+        </span>
+      </div>
+    <% end %>
+
   </div>
 <% end %>

@@ -9,6 +9,6 @@ class Block < ApplicationRecord
   scope :ordered, -> { order(:position) }
 
   def items_have_content?
-    items.any? { |item| item.content.present? }
+    items.any? { |item| item.content.present? || item.photos.attached? }
   end
 end
