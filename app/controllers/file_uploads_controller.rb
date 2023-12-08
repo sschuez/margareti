@@ -7,11 +7,16 @@ class FileUploadsController < ApplicationController
     blob = ActiveStorage::Blob.find(params[:id])
     
     if blob.attachments.any?
-      attachment = blob.attachments.where(record_type: "User", name: "photo").last
-      user = User.find(attachment.record_id)
+      user_attachment = blob.attachments.where(record_type: "User", name: "photo").last
       
-      blob.attachments.each(&:purge_later)
-      user.broadcast_photo_destroyed
+      if user_attachment
+        user = User.find(attachment.record_id)
+      
+        blob.attachments.each(&:purge_later)
+        user.broadcast_photo_destroyed
+      else
+        blob.attachments.each(&:purge_later)
+      end
     end
     
     blob.purge_later

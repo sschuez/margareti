@@ -15,7 +15,10 @@ class Blocks::ItemContentsController < ApplicationController
     @item = Item.find(params[:id])
     authorize @item, policy_class: UserPolicy
 
-    if @item.update(item_params)
+    # Filter out non-existent blob IDs before updating the item
+    filtered_params = item_params_with_existing_blobs
+
+    if @item.update(filtered_params)
       respond_to do |format|
         format.html { redirect_to user_path(@item.block.user) }
         format.turbo_stream {flash.now[:notice] = "Item updated." }
@@ -43,4 +46,21 @@ class Blocks::ItemContentsController < ApplicationController
   def item_params
     params.require(:item).permit(:content, photos: [])
   end
+
+# Filter out non-existent blob IDs
+def item_params_with_existing_blobs
+  params.require(:item).permit(:content, photos: []).tap do |filtered_params|
+    if filtered_params[:photos]
+      # Decode and filter blob_signed_ids to only include existing blobs
+      existing_blob_signed_ids = filtered_params[:photos].select do |signed_id|
+        next if signed_id.blank?
+        blob_id = ActiveStorage.verifier.verify(signed_id, purpose: :blob_id)
+        ActiveStorage::Blob.where(id: blob_id).exists?
+      end
+
+      # Replace the photos array with the filtered list of signed IDs
+      filtered_params[:photos] = existing_blob_signed_ids
+    end
+  end
+end
 end
