@@ -135,6 +135,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (3.25.1-aarch64-linux)
+    google-protobuf (3.25.1-x86_64-linux)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -186,6 +187,8 @@ GEM
     netrc (0.11.0)
     nio4r (2.7.0)
     nokogiri (1.15.5-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.4)
@@ -281,6 +284,8 @@ GEM
     ruby2_keywords (0.0.5)
     sass-embedded (1.69.5-aarch64-linux-gnu)
       google-protobuf (~> 3.23)
+    sass-embedded (1.69.5-x86_64-linux-gnu)
+      google-protobuf (~> 3.23)
     sidekiq (7.2.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -326,6 +331,7 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  x86_64-linux
 
 DEPENDENCIES
   acts_as_list
