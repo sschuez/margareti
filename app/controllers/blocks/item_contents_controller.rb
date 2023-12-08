@@ -10,7 +10,7 @@ class Blocks::ItemContentsController < ApplicationController
     @item = Item.find(params[:id])
     authorize @item, :show?, policy_class: UserPolicy
     
-    @photo = @item.photos.find(params[:photo_id])
+    @photo = ActiveStorage::Attachment.find(params[:photo_id])
   end
 
   def edit

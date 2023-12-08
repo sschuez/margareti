@@ -41,4 +41,13 @@ module PhotosHelper
     end
   end
 
+  def large_photo_display(photo)
+    if Rails.env.production?
+      cl_image_tag(photo.key, {
+        crop: :fit, width: 600, height: 600, class: "modal-photo"
+      })
+    else
+      image_tag(photo.variant(resize_to_fit: [600, 600]), class: "modal-photo")
+    end
+  end
 end

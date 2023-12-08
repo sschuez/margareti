@@ -1,0 +1,14 @@
+.modal-photo {
+  display: block;
+  max-width: 100%; 
+  max-height: calc(100vh - 4rem); 
+  margin: 0 auto; 
+  object-fit: contain;
+  border-radius: var(--border-radius);
+
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+}

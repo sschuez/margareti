@@ -1,14 +1,17 @@
 <%= render 'layouts/turbo_dialog' do %>
-   <div class="mx-auto">
-     <% if notice.present? %>
-       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+   <%= turbo_frame_tag :show_photo do %>
+    <%= large_photo_display(@photo) %>
 
-    <h1>Hi</h1>
-    <%#= render @comment %>
-    <%#= link_to "Edit this comment", edit_comment_path(@comment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div data-action="turbo:submit-end->dialog#submitEnd">
-      <%#= button_to "Destroy this comment", comment_path(@comment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="modal-photo__navigation">
+      <div class="modal-photo__navigation__left">
+        <%= link_to "Previous", photo_item_content_path(@item, @item.previous_photo(@photo)), class: "btn btn--small btn--primary", data: { turbo_frame: "show_photo" } %>
+      </div>
+      <div class="modal-photo__navigation__right">
+        <%= link_to "Next", photo_item_content_path(@item, @item.next_photo(@photo)), class: "btn btn--small btn--primary", data: { turbo_frame: "show_photo" } %>
+      </div>
     </div>
-  </div>
+  <% end %>
+    <%# <div data-action="turbo:submit-end->dialog#submitEnd"> %>
+      <%#= button_to "Destroy this comment", comment_path(@comment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <%# </div> %>
 <% end %>

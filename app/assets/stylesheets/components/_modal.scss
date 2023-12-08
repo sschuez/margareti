@@ -15,7 +15,7 @@
   border-radius: var(--border-radius);
   border: var(--border);
   background-color: var(--color-background); 
-  width: 100%; // w-full
+  width: 100%; 
   max-width: 640px; // Adjust this value based on your design
   margin: auto;
   @include media(tabletAndUp) {
@@ -24,7 +24,7 @@
 }
 
 .dialog-content {
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
 }
 
