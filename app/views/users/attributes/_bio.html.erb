@@ -2,7 +2,7 @@
   <div class="profile__bio">
     
     <% if user.bio.present? %>
-        <div class="markdown-content markdown-content--small">
+        <div class="markdown-content markdown-content--small" data-controller="markdown-clipboard">
           <%= markdown user.bio %>
         </div>
         <%= link_to edit_user_attributes_path(user, attribute: "bio"), data: { controller: "action-authorisations", action_authorisations_target: "user" }, class: "profile__bio__edit" do %>

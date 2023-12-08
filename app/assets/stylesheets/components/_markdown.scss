@@ -105,5 +105,10 @@
       // margin-bottom: 0.5em;
       // font-weight: bold;
     }
+
+    code {
+      font-size: var(--font-size-xs);
+      padding: 0.1em 0.2em;
+    }
   }
 }
