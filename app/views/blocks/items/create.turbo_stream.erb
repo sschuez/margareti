@@ -1,4 +1,6 @@
-<%= turbo_stream.append nested_dom_id(@block, "items"), @item %>
+<%= turbo_stream.append nested_dom_id(@block, "items") do %>
+  <%= render "blocks/items/item", item: @item, open_accordion: false %>
+<% end %>
 <%= turbo_stream.update nested_dom_id(@block, Item.new), "" %>
 <%= turbo_stream.append nested_dom_id(@block, "items") do %>
   <%= render "blocks/blocks/add_item", block: @block %>

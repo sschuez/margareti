@@ -35,21 +35,35 @@ module MarkdownHelper
 
   # This method finds markdown links in the text and converts them to HTML links.
   # The pattern [text](url) is converted to <a href="url">text</a>.
+  # def markdown_links_to_html(text)
+  #   # Escape any characters that could interfere with HTML rendering
+  #   sanitized_text = sanitize(text)
+
+  #   # Use a regular expression to find markdown links and replace them with HTML links.
+  #   # The pattern captures the link text in the first group and the URL in the second group.
+  #   regex = /\[([^\]]+)\]\((http[s]?:\/\/[^\)]+)\)/
+  #   html_text = sanitized_text.gsub(regex) do
+  #     link_text = $1
+  #     link_url = $2
+  #     # Generate an anchor tag for the link
+  #     ActionController::Base.helpers.link_to(link_text, link_url, target: '_blank', rel: 'noopener')
+  #   end
+
+  #   # Return the modified text with HTML links
+  #   html_text.html_safe
+  # end
   def markdown_links_to_html(text)
-    # Escape any characters that could interfere with HTML rendering
     sanitized_text = sanitize(text)
-
-    # Use a regular expression to find markdown links and replace them with HTML links.
-    # The pattern captures the link text in the first group and the URL in the second group.
-    regex = /\[([^\]]+)\]\((http[s]?:\/\/[^\)]+)\)/
+    regex = /\[(.*?)\]\((http[s]?:\/\/.*?)\)/
     html_text = sanitized_text.gsub(regex) do
-      link_text = $1
-      link_url = $2
-      # Generate an anchor tag for the link
-      ActionController::Base.helpers.link_to(link_text, link_url, target: '_blank', rel: 'noopener')
+      link_text = Regexp.last_match(1)
+      link_url = Regexp.last_match(2)
+      # Using Rails' link_to helper
+      ActionController::Base.helpers.link_to(link_text, link_url, target: '_blank', rel: 'noopener', class: '')
     end
-
-    # Return the modified text with HTML links
+  
     html_text.html_safe
   end
+     
+  
 end

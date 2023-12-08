@@ -5,8 +5,6 @@
   grid-template-columns: 1fr; // Single column by default
   gap: var(--block-gap);
   margin-top: var(--block-gap);
-  padding-left: var(--space-xs);
-  padding-right: var(--space-xs);
 
   // Medium devices (tablets, 768px and up) - two columns
   @include media(tabletAndUp) {
@@ -55,7 +53,7 @@
     &__content {
       position: relative;
       font-size: var(--font-size-m);
-      padding: var(--space-xs);
+      padding: var(--space-s);
       background-color: var(--color-less-light) !important;
       transition: max-height 0.2s ease-out;
       border-radius: var(--border-radius);
