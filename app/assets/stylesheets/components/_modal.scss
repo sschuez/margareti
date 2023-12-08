@@ -1,0 +1,35 @@
+@use "mixins/media" as *;
+
+.dialog-backdrop {
+  background-color: rgba(107, 114, 128, 0.7); // bg-gray-400 with opacity
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(4px); // Apply blur effect
+}
+
+.dialog {
+  border-radius: var(--border-radius);
+  border: var(--border);
+  background-color: var(--color-background); 
+  width: 100%; // w-full
+  max-width: 640px; // Adjust this value based on your design
+  margin: auto;
+  @include media(tabletAndUp) {
+    width: 66.666667%; // md:w-2/3
+  }
+}
+
+.dialog-content {
+  padding: 2rem;
+  position: relative;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.5rem;
+}

@@ -1,0 +1,12 @@
+<%= turbo_frame_tag :modal do %>
+  <div class="dialog-backdrop">
+    <dialog data-controller="dialog" data-action="click->dialog#clickOutside" class="dialog">
+      <div class="dialog-content">
+        <button class="cancel-button button" data-action="dialog#close"><%= Icon.call("close") %></button>
+
+        <%= yield %>
+
+      </div>
+    </dialog>
+  </div>
+<% end %>

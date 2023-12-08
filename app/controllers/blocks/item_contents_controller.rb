@@ -6,6 +6,13 @@ class Blocks::ItemContentsController < ApplicationController
     authorize @item, policy_class: UserPolicy
   end
 
+  def show_photo
+    @item = Item.find(params[:id])
+    authorize @item, :show?, policy_class: UserPolicy
+    
+    @photo = @item.photos.find(params[:photo_id])
+  end
+
   def edit
     @item = Item.find(params[:id])
     authorize @item, policy_class: UserPolicy
