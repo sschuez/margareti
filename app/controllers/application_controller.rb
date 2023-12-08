@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?  
+  before_action :set_tags
   include Pundit::Authorization
   after_action :verify_authorized, except: [ :index ], unless: :skip_pundit?
   after_action :verify_policy_scoped, only:  [ :index ], unless: :skip_pundit?
@@ -11,6 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_tags
+    set_meta_tags title: "Your portfolio",
+                  description: "A space to showcase your work and your ideas",
+                  keywords: "portfolio, ideas, projects, showcase, work, blog, article"
+  end
 
   def configure_permitted_parameters
     attributes = [:full_name, :email, :password, :password_confirmation, :bio]

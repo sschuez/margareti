@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :order, :save_content]
 
   def index
     @user = User.find(params[:user_id])
     @posts = policy_scope(Post).ordered.where(user: @user)
 
+    index_meta_tags(@user)
     # @canonical_href = posts_url
   end
   
@@ -28,8 +29,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    # @canonical_href = post_url(@post)
     authorize @post
+    
+    show_meta_tags(@post)
+    # @canonical_href = post_url(@post)
   end
 
   def edit
@@ -59,7 +62,6 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
     authorize @post, :update?
 
     @post.toggle!(:published)
@@ -72,7 +74,6 @@ class PostsController < ApplicationController
   end
 
   def order
-    @post = Post.find(params[:id])
     authorize @post, :update?
 
     @post.insert_at(params[:new_position])
@@ -81,7 +82,6 @@ class PostsController < ApplicationController
   end
 
   def save_content
-    @post = Post.find(params[:id])
     authorize @post, :update?
     
     if @post.update(body: params[:content])
@@ -106,5 +106,45 @@ class PostsController < ApplicationController
       :subtitle,
       :body
     )
+  end
+
+  def index_meta_tags(user)
+    set_meta_tags title: "#{user.name}'s posts",
+                  description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
+                  keywords: "portfolio, ideas, projects, showcase, work, blog, article",
+                  og: {
+                    title: "#{user.name}'s posts",
+                    description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
+                    type: "website",
+                    url: user_posts_url(user),
+                    image: user.photo.attached? ? url_for(user.photo) : nil
+                  },
+                  twitter: {
+                    card: "summary",
+                    site: "@yourportfolio",
+                    title: "#{user.name}'s posts",
+                    description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
+                    image: user.photo.attached? ? url_for(user.photo) : nil
+                  }
+  end
+
+  def show_meta_tags(post)
+    set_meta_tags title: post.title,
+                  description: post.subtitle.presence || post.body.truncate(300),
+                  keywords: post.keywords,
+                  og: {
+                    title: post.title,
+                    description: post.subtitle.presence || post.body.truncate(300),
+                    type: "website",
+                    url: post_url(post),
+                    image: post.user.photo.attached? ? url_for(post.user.photo) : nil
+                  },
+                  twitter: {
+                    card: "summary",
+                    site: "@yourportfolio",
+                    title: post.title,
+                    description: post.subtitle.presence || post.body.truncate(300),
+                    image: post.user.photo.attached? ? url_for(post.user.photo) : nil
+                  }
   end
 end

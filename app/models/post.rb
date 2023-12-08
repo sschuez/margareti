@@ -15,4 +15,16 @@ class Post < ApplicationRecord
       Icon.call("unpublished")
     end
   end
+
+  def keyword_subtitle
+    subtitle.truncate(300).split(" ").join(", ") if subtitle.present?
+  end
+    
+  def keyword_title
+    title.split(" ").join(", ")
+  end
+    
+  def keywords
+    keyword_subtitle || keyword_title
+  end
 end

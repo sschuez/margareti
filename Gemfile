@@ -84,3 +84,5 @@ gem 'acts_as_list'
 # Markdown
 gem "redcarpet", "~> 3.6"
 gem "rouge", "~> 4.1"
+
+gem "meta-tags", "~> 2.19"
