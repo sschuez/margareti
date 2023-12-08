@@ -86,3 +86,5 @@ gem "redcarpet", "~> 3.6"
 gem "rouge", "~> 4.1"
 
 gem "meta-tags", "~> 2.19"
+
+gem "sitemap_generator", "~> 6.3"

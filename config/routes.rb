@@ -49,4 +49,7 @@ Rails.application.routes.draw do
 
   # FILE UPLOADS
   resources :file_uploads, only: [:destroy]
+
+  # WORKER (Github Cronjob)
+  get "/refresh_sitemap", to: "worker#refresh_sitemap"
 end
