@@ -26,7 +26,13 @@ export default class extends Controller {
   // Private
   displayExistingFiles() {
     this.existingFileTargets.forEach((file) => {
-      const mockFile = { name: file.dataset.filename, size: file.dataset.size, blob_id: file.dataset.blobId, accepted: true }
+      const mockFile = { 
+        name: file.dataset.filename, 
+        size: Number(file.dataset.size), 
+        blob_id: file.dataset.blobId, 
+        accepted: true,
+        mock: true 
+      }
 
       this.dropZone.emit("addedfile", mockFile)
       this.dropZone.emit("thumbnail", mockFile, file.dataset.url)
@@ -50,9 +56,11 @@ export default class extends Controller {
 
   bindEvents() {
     this.dropZone.on("addedfile", file => {
-      setTimeout(() => {
-        file.accepted && this.createDirectUploadController(this, file).start()
-      }, 500)
+      if (!file.mock) {
+        setTimeout(() => {
+          file.accepted && this.createDirectUploadController(this, file).start()
+        }, 500)
+      }
 
       this.displayDropzoneMsg() 
     })

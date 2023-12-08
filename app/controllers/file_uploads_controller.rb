@@ -10,7 +10,7 @@ class FileUploadsController < ApplicationController
       user_attachment = blob.attachments.where(record_type: "User", name: "photo").last
       
       if user_attachment
-        user = User.find(attachment.record_id)
+        user = User.find(user_attachment.record_id)
       
         blob.attachments.each(&:purge_later)
         user.broadcast_photo_destroyed
