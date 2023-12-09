@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :item_contents, only: [:show, :edit, :update] do
       put :save_content, on: :member
       get 'photos/:photo_id', to: 'item_contents#show_photo', on: :member, as: :photo
+      get :photos, on: :member
     end
     get 'photos/:photo_id', to: 'item_contents#photo_partial', as: :photo_partial
   end

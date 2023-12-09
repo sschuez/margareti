@@ -7,6 +7,11 @@
       <%= markdown item.content %>
     </div>
 
-    <%= item_photos(item) %>
+    <%= turbo_frame_tag :item_photos, src: photos_item_content_path(item) do %>
+      <div class="d-center">
+        <%= render "shared/spinner" %>
+      </div>
+    <% end %>
+   
   <% end %>
 <% end %>

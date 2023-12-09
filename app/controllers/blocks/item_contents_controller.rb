@@ -1,5 +1,5 @@
 class Blocks::ItemContentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :show_photo, :photo_partial]
+  skip_before_action :authenticate_user!, only: [:show, :show_photo, :photo_partial, :photos]
   
   def show
     @item = Item.find(params[:id])
@@ -18,6 +18,11 @@ class Blocks::ItemContentsController < ApplicationController
         render partial: "blocks/item_contents/photo", locals: { photo: @photo }
       end
     end
+  end
+
+  def photos
+    @item = Item.find(params[:id])
+    authorize @item, :show?, policy_class: UserPolicy
   end
 
   def photo_partial
