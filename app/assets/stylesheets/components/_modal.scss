@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   z-index: 200;
-  backdrop-filter: blur(4px); // Apply blur effect
+  backdrop-filter: blur(4px); 
 }
 
 .dialog {
@@ -16,17 +16,17 @@
   border: var(--border);
   background-color: var(--color-background); 
   width: 100%; 
-  max-width: 700px; // Adjust this value based on your design
-  min-height: 450px;
+  max-width: 700px;
+  min-height: 300px;
   margin: auto;
-  position: relative;
-
+  
   @include media(tabletAndUp) {
     width: 66.666667%; // md:w-2/3
   }
 }
 
 .dialog-content {
+  position: relative;
   padding: 1rem;
 }
 
