@@ -25,7 +25,7 @@
     </div>
 
     <%= f.label :photos, class: "label mt-3" %>
-    <%= dropzone_controller_div(4) do %>
+    <%= dropzone_controller_div(6) do %>
       <% f.object.photos.each do |photo| %>
         <% file_details = file_details_for(photo) %>
         <%= f.hidden_field :photos, multiple: true, value: photo.signed_id, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], blob_id: file_details[:blob_id], "dropzone-target": "existingFile" } %>
