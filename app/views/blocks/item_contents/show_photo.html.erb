@@ -1,5 +1,5 @@
 <%= render 'layouts/turbo_dialog' do %>
-   <%= turbo_frame_tag :show_photo do %>
+   <%= turbo_frame_tag :show_photo, class: "modal-photo" do %>
     <%= large_photo_display(@photo) %>
 
     <div class="modal-photo__navigation">
