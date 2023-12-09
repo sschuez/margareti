@@ -7,6 +7,15 @@
   z-index: 99;
 }
 
+.editor-toolbar {
+  i {
+    color: var(--color-avatar) !important;
+  }
+  ::after {
+    color: var(--color-avatar) !important;
+  }
+}
+
 .editor-toolbar.fullscreen {
   margin-top: 3rem;
 }

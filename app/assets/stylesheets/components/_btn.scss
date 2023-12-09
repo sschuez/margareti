@@ -26,7 +26,7 @@
   // Modifiers will go there
   &--primary {
     color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
+    background-image: linear-gradient(to right, var(--color-avatar), var(--color-primary-rotate));
 
     &:hover,
     &:focus,
@@ -86,7 +86,7 @@
   background: none;
   border: none;
   padding: 0;
-  color: var(--color-primary) !important;
+  color: var(--color-avatar) !important;
   text-decoration: none !important;
   transition: color 200ms !important;
 
