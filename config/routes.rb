@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       put :save_content, on: :member
       get 'photos/:photo_id', to: 'item_contents#show_photo', on: :member, as: :photo
     end
+    get 'photos/:photo_id', to: 'item_contents#photo_partial', as: :photo_partial
   end
 
   # BLOG

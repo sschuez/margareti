@@ -1,6 +1,11 @@
 <%= render 'layouts/turbo_dialog' do %>
    <%= turbo_frame_tag :show_photo, class: "modal-photo" do %>
-    <%= large_photo_display(@photo) %>
+    
+    <%= turbo_frame_tag @photo, src: photo_partial_path(@photo), loading: "lazy" do %>
+      <div class="d-center">
+        <%= render "shared/spinner" %>
+      </div>
+    <% end %>
 
     <div class="modal-photo__navigation">
       <div class="modal-photo__navigation__left">
