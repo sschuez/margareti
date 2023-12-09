@@ -16,8 +16,11 @@
   border: var(--border);
   background-color: var(--color-background); 
   width: 100%; 
-  max-width: 640px; // Adjust this value based on your design
+  max-width: 700px; // Adjust this value based on your design
+  min-height: 450px;
   margin: auto;
+  position: relative;
+
   @include media(tabletAndUp) {
     width: 66.666667%; // md:w-2/3
   }
@@ -25,7 +28,6 @@
 
 .dialog-content {
   padding: 1rem;
-  position: relative;
 }
 
 .cancel-button {

@@ -11,6 +11,13 @@ class Blocks::ItemContentsController < ApplicationController
     authorize @item, :show?, policy_class: UserPolicy
     
     @photo = ActiveStorage::Attachment.find(params[:photo_id])
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render partial: "blocks/item_contents/photo", locals: { photo: @photo }
+      end
+    end
   end
 
   def edit
