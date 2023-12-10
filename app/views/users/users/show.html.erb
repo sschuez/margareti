@@ -16,6 +16,10 @@
 
 <%= render "add_block", user: @user %>
 
+<% if @user.email == "stephens@hey.com" %>
+  <%= render "shared/signup_prompt", context: "portfolio page" %>
+<% end %>
+
 <% if @user.posts.published.any? %>
   <div class="container container--more-narrow">
     <div class="container-divider"></div>
