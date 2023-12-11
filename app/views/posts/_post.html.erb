@@ -6,7 +6,7 @@
     <% end %>
     <p class="post__meta">
         Posted by
-        <%= link_to post.user.email_username, user_path(post.user), target: "_top" %>
+        <%= link_to post.user.name, user_path(post.user), target: "_top" %>
         on <%= formatted_date post.created_at %>
     </p>
   </div>
