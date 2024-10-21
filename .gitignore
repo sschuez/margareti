@@ -39,3 +39,8 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+.kamal/secrets
+.kamal/secrets.staging
+.kamal/secrets.production
+.kamal/secrets-common
