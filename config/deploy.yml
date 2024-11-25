@@ -21,8 +21,8 @@ builder:
   arch: aarch64
 
 proxy:
-  app_port: 3000
-  ssl: false
+  # app_port: 3000
+  ssl: true
   hosts:
     - margareti.com
     - www.margareti.com
