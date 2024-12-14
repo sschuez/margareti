@@ -14,8 +14,7 @@ export default class extends Controller {
       onEnd: this.onEnd.bind(this),
       draggable: this.hasDraggableValue ? this.draggableValue : null,
       animation: 150,
-      group: this.groupValue,      
-
+      group: this.groupValue,
       handle: ".sortable-handle",  // Drag handle selector within list items
       ghostClass: "sortable-ghost",  // Class name for the drop placeholder
       chosenClass: "sortable-chosen",  // Class name for the chosen item
