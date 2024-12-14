@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :order, :save_content]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_post, only: %i[show edit update destroy publish shift save_content]
 
   def index
     @user = User.find(params[:user_id])
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     index_meta_tags(@user)
     # @canonical_href = posts_url
   end
-  
+
   def new
     @user = User.find(params[:user_id])
     @post = @user.posts.build
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def show
     authorize @post
-    
+
     show_meta_tags(@post)
     # @canonical_href = post_url(@post)
   end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       redirect_to post_path(@post)
-      flash[:notice] = "Post updated."
+      flash[:notice] = 'Post updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream { flash.now[:notice] = "Post #{@post.title} destroyed" }
-      format.html { redirect_to user_posts_path(@post.user), notice: "Post destroyed" }
+      format.html { redirect_to user_posts_path(@post.user), notice: 'Post destroyed' }
     end
   end
 
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     authorize @post, :update?
 
     @post.toggle!(:published)
-    state = @post.published? ? "published" : "unpublished"
+    state = @post.published? ? 'published' : 'unpublished'
 
     respond_to do |format|
       format.turbo_stream { flash.now[:notice] = "Post #{@post.title} #{state}" }
@@ -73,21 +73,21 @@ class PostsController < ApplicationController
     end
   end
 
-  def order
+  def shift
     authorize @post, :update?
 
-    @post.insert_at(params[:new_position])
-    
-    head :no_content
+    @post.shift(params[:direction])
+
+    redirect_to user_posts_path(current_user)
   end
 
   def save_content
     authorize @post, :update?
-    
+
     if @post.update(body: params[:content])
       respond_to do |format|
-        format.turbo_stream { flash.now[:notice] = "Post content saved" }
-        format.html { redirect_to edit_post_path(@post), notice: "Post content saved" }
+        format.turbo_stream { flash.now[:notice] = 'Post content saved' }
+        format.html { redirect_to edit_post_path(@post), notice: 'Post content saved' }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -102,7 +102,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, 
+      :title,
       :subtitle,
       :body
     )
@@ -110,20 +110,20 @@ class PostsController < ApplicationController
 
   def index_meta_tags(user)
     set_meta_tags title: "#{user.name}'s posts",
-                  description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
-                  keywords: "portfolio, ideas, projects, showcase, work, blog, article",
+                  description: user.posts.any? ? user.posts.map(&:title).join(', ') : 'A space to blog about your work and your ideas',
+                  keywords: 'portfolio, ideas, projects, showcase, work, blog, article',
                   og: {
                     title: "#{user.name}'s posts",
-                    description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
-                    type: "website",
+                    description: user.posts.any? ? user.posts.map(&:title).join(', ') : 'A space to blog about your work and your ideas',
+                    type: 'website',
                     url: user_posts_url(user),
                     image: user.photo.attached? ? url_for(user.photo) : nil
                   },
                   twitter: {
-                    card: "summary",
-                    site: "@yourportfolio",
+                    card: 'summary',
+                    site: '@yourportfolio',
                     title: "#{user.name}'s posts",
-                    description: user.posts.any? ? user.posts.map(&:title).join(", ") : "A space to blog about your work and your ideas",
+                    description: user.posts.any? ? user.posts.map(&:title).join(', ') : 'A space to blog about your work and your ideas',
                     image: user.photo.attached? ? url_for(user.photo) : nil
                   }
   end
@@ -135,13 +135,13 @@ class PostsController < ApplicationController
                   og: {
                     title: post.title,
                     description: post.subtitle.presence || post.body.truncate(300),
-                    type: "website",
+                    type: 'website',
                     url: post_url(post),
                     image: post.user.photo.attached? ? url_for(post.user.photo) : nil
                   },
                   twitter: {
-                    card: "summary",
-                    site: "@yourportfolio",
+                    card: 'summary',
+                    site: '@yourportfolio',
                     title: post.title,
                     description: post.subtitle.presence || post.body.truncate(300),
                     image: post.user.photo.attached? ? url_for(post.user.photo) : nil
