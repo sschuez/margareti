@@ -2,7 +2,7 @@ class Icon
   def self.call(*args, &block)
     new(*args, &block).call
   end
-  
+
   def initialize(icon)
     @icon = icon
     @icons = {
@@ -25,6 +25,8 @@ class Icon
       drag: '<i class="fas fa-grip-horizontal"></i>',
       plus: '<i class="fas fa-plus"></i>',
       edit_emoji: '<i class="emoji">✍️</i>',
+      up: '<i class="fas fa-sort-up"></i>',
+      down: '<i class="fas fa-sort-down"></i>',
       confirm_emoji: '<i class="emoji">👍</i>',
       cancel_emoji: '<i class="emoji">❌</i>',
       bin_emoji: '<i class="emoji">🗑️</i>'
