@@ -1,19 +1,24 @@
-  <div class="container container--narrow">
-    <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
-    
-    <div class="header">
-      <h1><%= @user.name %>'s posts</h1>
-      <% if policy(@user).update? %>
-        <%= link_to "New post", new_user_post_path(@user), data: { turbo_frame: :top }, class: "btn btn--dark" %>
-      <% end %>
-    </div>
+<div class="container container--narrow">
+  <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
 
-    <%= turbo_frame_tag "posts", data: { controller: "sortable", sortable_draggable_value: ".drag-item" } do %>        
-      <%= render "empty_state", user: @user %>
-      <%= render @posts %>
+  <div class="header">
+    <h1><%= @user.name %>'s posts</h1>
+    <% if policy(@user).update? %>
+      <%= link_to "New post",
+      new_user_post_path(@user),
+      data: {
+        turbo_frame: :top,
+      },
+      class: "btn btn--dark" %>
     <% end %>
-    <br>    
-    <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
   </div>
 
-  <%= render "shared/signup_prompt", context: "blog" %>
+  <%= turbo_frame_tag "posts" do %>
+    <%= render "empty_state", user: @user %>
+    <%= render @posts %>
+  <% end %>
+  <br>
+  <%= link_to sanitize("&larr; Back home"), user_path(@user) %>
+</div>
+
+<%= render "shared/signup_prompt", context: "blog" %>
